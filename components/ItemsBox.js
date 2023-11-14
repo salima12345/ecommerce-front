@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import StarRating from "./StarRating";
-import StarRatingComponent from "react-star-rating-component";
+
 import Link from "next/link";
 
 const ItemsWrapper=styled.div`
