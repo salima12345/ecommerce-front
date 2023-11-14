@@ -311,9 +311,9 @@ export default function CartPage() {
       <ProductContainer key={`${product._id}-${productInCart.color}-${productInCart.size}-${index}`}>
           <ProductImageBox>
 
-         {product.colors.map((color) => {
+         {product.colors.map((color, index)=> {
       if (color.name === productInCart.color) {
-        return <img src={color.images[0]} alt="" />;
+        return <img  key={index} src={color.images[0]} alt="" />;
       }
       return null;
     })}

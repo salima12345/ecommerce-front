@@ -431,7 +431,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
             <PriceRow>
             <Stars>
                 <ReviewsAverage>
-               <StarRatingComponent value={avgRating} readOnly />
+               <StarRatingComponent rating={avgRating} readOnly />
                   <AvgReview>
                   ({avgRating.toFixed(2)})
 
@@ -587,7 +587,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
     <div>
     <Avg>
         <h2>{avgRating.toFixed(1)}/5</h2>
-        <StarRatingComponent value={avgRating} readOnly />
+        <StarRatingComponent rating={avgRating} readOnly />
         <p>({commentss.length} Reviews)</p>
         
 
@@ -623,7 +623,7 @@ return (
     showAllComment ?  
        commentss.map((comment) => (
       <div key={comment._id}>
-        <StarRatingComponent value={comment.rating} readOnly />
+        <StarRatingComponent rating={comment.rating} readOnly />
         <p>{comment.comment}</p>
          <UserRev>{formatDate(comment.createdAt)} by <strong>{comment.user.name}</strong> </UserRev>
          <hr style={{ backgroundColor: '#F1F1F2', height: '2px', border: 'none' }} />
@@ -637,7 +637,7 @@ return (
     )):(
       commentss.slice(0,3).map((comment)=> (
         <div key={comment._id}>
-          <StarRatingComponent value={comment.rating} readOnly />
+          <StarRatingComponent rating={comment.rating} readOnly />
           <p>{comment.comment}</p>
            <UserRev>{formatDate(comment.createdAt)} by <strong>{comment.user.name}</strong> </UserRev>
            <hr style={{ backgroundColor: '#F1F1F2', height: '2px', border: 'none' }} />
@@ -677,7 +677,7 @@ return (
                </FormGroup>
                <FormGroup>
                  <StarRatingComponent
-                   value={rating}
+                   rating={rating}
                    changeRating={(newRating) => setRating(newRating)}
                  />
                </FormGroup>
@@ -723,7 +723,7 @@ return (
                    </FormGroup>
                    <FormGroup>
                      <StarRatingComponent
-                       value={rating}
+                       rating={rating}
                        changeRating={(newRating) => setRating(newRating)}
                      />
                    </FormGroup>
