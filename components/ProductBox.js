@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components"
 
 const CatWrapper=styled.div`
@@ -45,7 +46,7 @@ export default function ProductBox({name,image,minPrice}){
 
             </CategoryInfo>
             <CategoryImage>
-            <img src={image?.[0]} alt="" />
+            <Image src={image?.[0]} alt="" />
 
 
             </CategoryImage>
