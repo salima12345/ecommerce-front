@@ -64,8 +64,6 @@
     "react-select": "^5.7.4",
     "react-simple-star-rating": "^5.1.7",
     "react-slick": "^0.29.0",
-    "react-star-rating-component": "^1.4.1",
-    "react-star-ratings": "^2.3.0",
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "react-toastify": "^9.1.3",
