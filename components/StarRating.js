@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ReactStars from 'react-rating-stars-component';
 
-import Rating from '@mui/material/Rating';
 export default function StarRatingComponent({ rating, changeRating }) {
- return (
-  <Rating
-  name="rating"
-  value={rating}
-  onChange={(event, newValue) => {
-    changeRating(newValue);
-  }}
-/>
- );
+  return (
+    <ReactStars
+      count={5}
+      value={rating}
+      onChange={(newRating) => changeRating(newRating)}
+      size={24}
+      activeColor="#ffd700"
+    />
+  );
 }
