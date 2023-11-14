@@ -9,7 +9,7 @@ import { Product } from "@/models/Product";
 import { useContext, useState,useEffect } from "react";
 import styled from "styled-components";
 import ProductImages from "@/components/ProductImages";
-import StarRating from "@/components/StarRating";
+import StarRatingComponent from "@/components/StarRating";
 import ItemsBox from "@/components/ItemsBox";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -17,11 +17,8 @@ import Footer from "@/components/Footer";
 import Comment from "@/models/Comment";
 import { useSession } from "next-auth/react";
 import { primary } from "@/lib/colors";
-import Link from "next/link";
 import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -434,7 +431,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
             <PriceRow>
             <Stars>
                 <ReviewsAverage>
-               <StarRating rating={avgRating} readOnly />
+               <StarRatingComponent value={avgRating} readOnly />
                   <AvgReview>
                   ({avgRating.toFixed(2)})
 
@@ -590,7 +587,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
     <div>
     <Avg>
         <h2>{avgRating.toFixed(1)}/5</h2>
-        <StarRating rating={avgRating} readOnly />
+        <StarRatingComponent value={avgRating} readOnly />
         <p>({commentss.length} Reviews)</p>
         
 
@@ -599,13 +596,13 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
       </Avg>
       <RatingDetails>
       {Array.from({ length: 5 }, (_, index) => {
-const ratingValue = 5 - index;
-const ratingCount = commentss.filter(comment => comment.rating === ratingValue).length;
+const value = 5 - index;
+const ratingCount = commentss.filter(comment => comment.rating === value).length;
 const ratingPercentage = (ratingCount / commentss.length) * 100;
 
 return (
-<RatingBar key={ratingValue}>
-<RatVal> {ratingValue} </RatVal>
+<RatingBar key={value}>
+<RatVal> {value} </RatVal>
 
 <span style={{ color: 'gold' }}>★</span> 
 <RatCount> ({ratingCount})</RatCount>
@@ -626,7 +623,7 @@ return (
     showAllComment ?  
        commentss.map((comment) => (
       <div key={comment._id}>
-        <StarRating rating={comment.rating} readOnly />
+        <StarRatingComponent value={comment.rating} readOnly />
         <p>{comment.comment}</p>
          <UserRev>{formatDate(comment.createdAt)} by <strong>{comment.user.name}</strong> </UserRev>
          <hr style={{ backgroundColor: '#F1F1F2', height: '2px', border: 'none' }} />
@@ -640,7 +637,7 @@ return (
     )):(
       commentss.slice(0,3).map((comment)=> (
         <div key={comment._id}>
-          <StarRating rating={comment.rating} readOnly />
+          <StarRatingComponent value={comment.rating} readOnly />
           <p>{comment.comment}</p>
            <UserRev>{formatDate(comment.createdAt)} by <strong>{comment.user.name}</strong> </UserRev>
            <hr style={{ backgroundColor: '#F1F1F2', height: '2px', border: 'none' }} />
@@ -679,8 +676,8 @@ return (
                  />
                </FormGroup>
                <FormGroup>
-                 <StarRating
-                   rating={rating}
+                 <StarRatingComponent
+                   value={rating}
                    changeRating={(newRating) => setRating(newRating)}
                  />
                </FormGroup>
@@ -725,8 +722,8 @@ return (
                      />
                    </FormGroup>
                    <FormGroup>
-                     <StarRating
-                       rating={rating}
+                     <StarRatingComponent
+                       value={rating}
                        changeRating={(newRating) => setRating(newRating)}
                      />
                    </FormGroup>
