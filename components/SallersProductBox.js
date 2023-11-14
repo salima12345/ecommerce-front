@@ -52,6 +52,8 @@ export default function SallersProductBox({_id, title, images, discountPercentag
   const getProductUrl = (productId) => {
     return `/product/${productId}`;
   };
+  const truncatedTitle = title.length > 20 ? `${title.substring(0, 20)}...` : title;
+
   return (
     <ProductBoxWrapper>
       <Link href={getProductUrl(_id)}>
@@ -61,15 +63,15 @@ export default function SallersProductBox({_id, title, images, discountPercentag
 </ProductImage>
       </Link>
       <Link href={getProductUrl(_id)}>
-      <Title>{title}</Title>
+      <Title>{truncatedTitle}</Title>
 
       </Link>
       <Link href={getProductUrl(_id)}>
       <Price>
-                      MLinkD
+                      MAD
                       {(
                         price -
-                        (price * discountPercentLinkge) / 100
+                        (price * discountPercentage) / 100
                       ).toFixed(2)}
                     </Price>
       

@@ -13,6 +13,10 @@ flex-direction:column;
 align-items:center;
 height:100vh;
 gap:20px;
+@media (max-width: 1024px){
+  height:100%;
+  position:relative;
+}
 
 `;
 
@@ -32,6 +36,12 @@ const Logo = styled.div`
 align-items:center;
 gap:10px;
 font-weight:bold;
+@media (max-width: 1024px){
+  font-size:1rem;
+  margin-top:3rem;
+  position:relative;
+
+}
 
 
 `;
@@ -57,6 +67,10 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+@media (max-width: 1024px){
+  position:relative;
+  width:80%;
+}
 
 `;
 const Or=styled.div`
@@ -71,6 +85,10 @@ div{
   height: 2px;
   width:230px;
   background-color:rgba(102, 102, 102, 0.25);
+  @media (max-width: 1024px){
+    width:30%;
+    position:relative;
+  }
 
 }`;
 
@@ -88,6 +106,10 @@ border-radius: 40px;
 border: 1px solid #333;
 
 background: #FFF;
+@media (max-width: 1024px){
+  position:relative;
+  width:70%;
+}
 `;
 
 const Button = styled.button`
@@ -101,6 +123,10 @@ height: 50px;
 border-radius: 40px;
 font-size:20px;
 font-weight:500;
+@media (max-width: 1024px){
+  position:relative;
+  width:80%;
+}
 
 `;
 const Ask=styled.div`
@@ -146,10 +172,10 @@ export default function Register() {
     setShowPassword(!showPassword);
   };
   async function handleGoogleSingin(){
-    signIn('google',{callbackUrl:"http://localhost:3000"})
+    signIn('google',{callbackUrl:"http://localhost:3001"})
   }
   async function handleFacebooklogin(){
-    signIn('facebook',{callbackUrl:"http://localhost:3000"})
+    signIn('facebook',{callbackUrl:"http://localhost:3001"})
   
   }
 

@@ -73,6 +73,8 @@ export default function SaleProductBox({_id, title, images, discountPercentage, 
   const getProductUrl = (productId) => {
     return `/product/${productId}`;
   };
+  const truncatedTitle = title.length > 20 ? `${title.substring(0, 20)}...` : title;
+
   return (
     <ProductBoxWrapper>
       <Link href={getProductUrl(_id)}>
@@ -83,7 +85,7 @@ export default function SaleProductBox({_id, title, images, discountPercentage, 
       </Link>
       <DiscountInfo>
         <Link href={getProductUrl(_id)}>
-          <Title>{title}</Title>
+          <Title>{truncatedTitle}</Title>
         </Link>
         <Link href={getProductUrl(_id)}>
           <Price>

@@ -16,8 +16,9 @@ export default  async function handler(req,res){
         cartProducts,
       } = req.body;
       await mongooseConnect();
-      const productIds=cartProducts;
-      const uniqueIds=[...new Set(productIds)];
+      const productIds = cartProducts.map(product => product.id);
+      const uniqueIds = [...new Set(productIds)];
+      
      
       const productInfos= await Product.find({_id:uniqueIds});
       const productIdsInSession = productInfos.map((productInfo) =>
@@ -26,6 +27,7 @@ export default  async function handler(req,res){
       let line_items=[];
       for (const productId of uniqueIds) {
         const productInfo = productInfos.find(p => p._id.toString() === productId);
+
         const quantity = productIds.filter(id => id === productId)?.length || 0;
         if (quantity > 0 && productInfo) {
           line_items.push({
@@ -34,6 +36,7 @@ export default  async function handler(req,res){
               currency: 'USD',
               product_data: {
                 name: productInfo.title,
+
                 metadata: {
                   productId: productId,
                 },

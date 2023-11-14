@@ -50,6 +50,7 @@ const Logo = styled(Link)`
   z-index: 3;
   color:#8CB7F5;
   font-size:1.5rem;
+  margin-right:10rem;
   display:flex;
 align-items:center;
 gap:10px;
@@ -117,7 +118,7 @@ display:flex;
 color: #696969;
 font-weight: 500;
 transition: color 0.3s ease;
-margin-right:80px;
+text-decoration:none;
 
 &:hover {
   color: #8cb7f5; 

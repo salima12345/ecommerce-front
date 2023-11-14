@@ -31,6 +31,11 @@ const ColWrapper = styled.div`
   grid-template-columns: 0.9fr 1.1fr;
   gap: 50px;
   margin-top: 10rem;
+  @media (max-width: 1024px){
+  grid-template-columns: .8fr;
+
+}
+
 `;
 const PriceRow = styled.div`
   display: flex;
@@ -65,6 +70,7 @@ const HeadTitle = styled.div`
   display:flex;
   justify-content:space-between;
   align-items:center;
+
 `;
 const ProductDetails=styled.div``;
 
@@ -123,7 +129,13 @@ color:${primary};
 const ReviewsContent=styled.div`
 padding:20px;
 display:flex;
-gap:20rem;
+gap:15rem;
+@media (max-width: 1024px){
+  flex-direction:column;
+  gap:5rem;
+
+
+}
 
 `;
 const Avg=styled.div`
@@ -214,6 +226,7 @@ backgroundColor: lightgray;
 height:40px;
 border:1px solid #ccc;
 border-radius: 7px;
+padding:7px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -434,7 +447,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
                 
 
                   
-                   </Stars>
+             </Stars>
               <div>
               <Price>MAD {(
   productPrice -

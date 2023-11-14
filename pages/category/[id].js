@@ -23,6 +23,8 @@ gap:10rem;
 position: relative;
 @media (max-width: 1024px){
   grid-template-columns:2.5fr 1.5fr;
+  height:100%;
+  position:absolute;
 
 
 }
@@ -39,6 +41,12 @@ overflow-y: auto;
 background-color:#ffffff;
 position: fixed;
 top: 5.3rem;
+@media (max-width: 1024px){
+  height:100%;
+  position:absolute;
+
+
+}
 
 
 

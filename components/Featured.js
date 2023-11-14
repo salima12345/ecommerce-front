@@ -1,5 +1,5 @@
 import Center from "./Center";
-import styled from "styled-components";
+import styled ,{keyframes}from "styled-components";
 
 import { useState } from "react";
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from "axios";
 import { useRouter } from 'next/router';
+import { useEffect } from "react";
 import { useSession,signOut } from "next-auth/react";
 import Link from "next/link";
 
@@ -50,7 +51,10 @@ border-radius:10px;
 width:20%;
 background-color:#f9f9f9;
 
+@media (max-width: 1270px) and (min-width: 1024px){
+  width:40%;
 
+}
 @media (max-width: 1024px){
 width:100%;
 
@@ -97,8 +101,9 @@ flex-direction:column;
 background-color:#ffffff;
 
 gap:14px;
-width:10°%;
-padding:6%;
+width:100%;
+padding-top:20px;
+padding-bottom:10px;
 position:relative;
 
 @media (max-width: 1024px) {
@@ -200,6 +205,9 @@ margin-bottom:10px;
 const Cat=styled.div`
 display:flex;
 flex-direction:column;
+gap:10px;
+width:100%;
+postion:relative;
 
 
 `;
@@ -212,6 +220,12 @@ margin-top:10px;
 
 const Banner =styled.div`
 width: 51%;
+position:relative;
+@media (max-width: 1270px) and (min-width: 1024px){
+  width:31%;
+
+}
+
 @media (max-width: 1024px){
   display:none;
 }
@@ -295,6 +309,20 @@ p{
   width:100%;
   z-index: 0;
 }
+`;
+const spin = keyframes`
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+`;
+
+const Loader = styled.div`
+ border: 4px solid #f3f3f3;
+ border-top: 4px solid #3498db;
+ border-radius: 50%;
+ width: 15px;
+ height: 15px;
+ animation: ${spin} 2s linear infinite;
+ margin: auto;
 `;
 
 
@@ -524,8 +552,19 @@ a{text-decoration:none}
 export default function Featured({categories,allcategories,productsOnSale}){
   const router = useRouter();
   const { data: session } = useSession();
-  
+  const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    if (!session) {
+      setIsLoading(false);
+    }
+  }, [session]);
+  
+  const handleSignOut = async () => {
+    setIsLoading(true); 
+    await signOut();
+  };
+  
 
   
   
@@ -715,7 +754,9 @@ export default function Featured({categories,allcategories,productsOnSale}){
            {session ? (
               <div>
                 <p>Welcome {session.user.name}</p>
-                <Logout onClick={()=>signOut()}>Logout</Logout>
+                <Logout onClick={handleSignOut}>
+           {isLoading ? <Loader /> : 'Logout'}
+                    </Logout>
               </div>
             ) : (
               <div>

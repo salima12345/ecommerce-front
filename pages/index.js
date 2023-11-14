@@ -85,7 +85,8 @@ const categories = [
   ...updatedCategoriesWithoutParent.slice(0, insertIndex),
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
-];  const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8});
+];  
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8});
   const DealsItem=await Product.find({ sale: true });
   const newSales= await Caterogy.find({sale: true },null,{sort:{'_id':-1},limit:5}) ;
   

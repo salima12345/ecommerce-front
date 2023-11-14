@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useRouter } from 'next/router';
 import { signIn, useSession ,signOut} from 'next-auth/react';
+import { useEffect } from 'react';
+
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import Login_validate from '@/lib/validate';
 import Image from 'next/image';
+
+
 const LoginPage=styled.div`
 background-color:white;
 display:flex;
@@ -15,6 +19,10 @@ flex-direction:column;
 align-items:center;
 height:100vh;
 gap:20px;
+@media (max-width: 1024px){
+  height:100%;
+  position:relative;
+}
 
 `;
 
@@ -36,6 +44,12 @@ const Logo = styled.div`
 align-items:center;
 gap:10px;
 font-weight:bold;
+@media (max-width: 1024px){
+  font-size:1rem;
+  margin-top:3rem;
+  position:relative;
+
+}
 
 
 `;
@@ -47,7 +61,8 @@ border: 1px solid #333;
 background: #FFF;
 
 display: flex;
-width: 500px;
+width:100%;
+position:relative;
 height: 40px;
 justify-content: center;
 align-items: center;
@@ -60,6 +75,10 @@ font-size: 18px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+@media (max-width: 1024px){
+  position:relative;
+  width:80%;
 }
 
 `;
@@ -75,6 +94,10 @@ div{
   height: 2px;
   width:230px;
   background-color:rgba(102, 102, 102, 0.25);
+  @media (max-width: 1024px){
+    width:30%;
+    position:relative;
+  }
 
 }`;
 const Form = styled.form`
@@ -86,12 +109,17 @@ const Form = styled.form`
 const Input = styled.input`
   margin-bottom: 10px;
   padding: 10px;
-  width: 500px;
+  width: 100%;
+  position:relative;
 height: 30px;
 border-radius: 40px;
 border: 1px solid #333;
 
 background: #FFF;
+@media (max-width: 1024px){
+  position:relative;
+  width:70%;
+}
 `;
 
 const Button = styled.button`
@@ -100,11 +128,16 @@ const Button = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
-  width: 530px;
+  width: 100%;
+  position:relative;
 height: 50px;
 border-radius: 40px;
 font-size:20px;
 font-weight:500;
+@media (max-width: 1024px){
+  position:relative;
+  width:80%;
+}
 
 `;
 const Register = styled.button`
@@ -113,11 +146,18 @@ const Register = styled.button`
   color: #111;
   border: 1px solid #111;
     cursor: pointer;
-  width: 530px;
+  width: 100%;
+  position:relative;
 height: 50px;
 border-radius: 40px;
 font-size:20px;
 font-weight:500;
+@media (max-width: 1024px){
+  position:relative;
+  width:80%;
+}
+
+
 
 `;
 const Ask=styled.p`
@@ -144,17 +184,57 @@ const EyeIcon = styled.img`
   cursor: pointer;
   width:20px;
   heghit:20px;
+  @media (max-width: 1024px){
+    position:relative;
+    transform: translate(-60%,40%);
+
+
+  }
+`;
+const spin = keyframes`
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+`;
+
+const Loader = styled.div`
+ border: 8px solid #f3f3f3;
+ border-top: 8px solid #3498db;
+ border-radius: 50%;
+ width: 20px;
+ height: 20px;
+ animation: ${spin} 2s linear infinite;
+ margin: auto;
 `;
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const { data: session, mutate } = useSession(); 
+  const [isLoading, setIsLoading] = useState(false);
+
+
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const [currentUrl, setCurrentUrl] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.href;
+    }
+    return '';
+  });
+  useEffect(() => {
+    const checkUrl = setInterval(() => {
+     if (typeof window !== 'undefined' && window.location.href !== currentUrl) {
+       setCurrentUrl(window.location.href);
+       setIsLoading(false);
+     }
+    }, 100);
+    return () => clearInterval(checkUrl);
+   }, [currentUrl]);
+   
+   
+   
 
   const formik = useFormik({
     initialValues: {
@@ -176,15 +256,26 @@ async function handleFacebooklogin(){
 const handleRegisterClick = () => {
   router.push('/register');
 };
-  async function onSubmit(values){
-     const status= await signIn('credentials',{
-        redirect:false,
-        email:values.email,
-        password:values.password,
-        callbackUrl:"/"
-      })
-if(status.ok) router.push(status.url)
+ 
+
+
+
+async function onSubmit(values){
+  setIsLoading(true);
+  const status = await signIn('credentials',{
+   redirect:false,
+   email:values.email,
+   password:values.password,
+   callbackUrl:"http://localhost:3001"
+  }).catch(() => setIsLoading(false)); 
+  if(status.ok){
+   router.push(status.url);
+  } else {
+   setIsLoading(false);
   }
+ }
+ 
+
   
   return (
     <LoginPage>
@@ -247,7 +338,13 @@ if(status.ok) router.push(status.url)
   />
 </PasswordContainer>
 
-        <Button type="submit">Login</Button>
+<Button type="submit" >
+ {isLoading ? <Loader /> : 'Login'}
+</Button>
+
+
+
+
       </Form>
       <Ask>
       Don’t have an account?
