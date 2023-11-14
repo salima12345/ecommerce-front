@@ -678,7 +678,7 @@ return (
                <FormGroup>
                  <StarRatingComponent
                    value={rating}
-                   onChange={(newRating) => setRating(newRating)}
+                   changeRating={(newRating) => setRating(newRating)}
                  />
                </FormGroup>
                <FormGroup>
