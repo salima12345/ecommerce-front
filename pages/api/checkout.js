@@ -1,7 +1,7 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
-const stripe = require('stripe')(process.env.STRIPE_SK);
+const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SK);
 
 
 export default  async function handler(req,res){
@@ -56,8 +56,8 @@ export default  async function handler(req,res){
         line_items: line_items,
         mode: 'payment',
         customer_email: email,
-        success_url: process.env.PUBLIC_URL + '/cart?success=1',
-        cancel_url: process.env.PUBLIC_URL + '/cart?canceled=1',
+        success_url: process.env.NEXT_PUBLIC_PUBLIC_URL + '/cart?success=1',
+        cancel_url: process.env.NEXT_PUBLIC_PUBLIC_URL + '/cart?canceled=1',
         metadata: {orderId:orderDoc._id.toString(),test:'ok', productIds: productIdsInSession.join(','),},
       });
     

@@ -1,5 +1,5 @@
 import {mongooseConnect} from "@/lib/mongoose";
-const stripe = require('stripe')(process.env.STRIPE_SK);
+const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SK);
 import {buffer} from 'micro';
 import {Order} from "@/models/Order";
 import { Product } from "@/models/Product";
