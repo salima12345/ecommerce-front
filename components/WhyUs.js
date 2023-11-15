@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Center from './Center';
 import { FaFacebook, FaInstagram, FaTwitter, FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
+import Image from 'next/image';
 const SloganContainer=styled.div`
 background-color:#ffffff;
 width:100%;
@@ -102,7 +103,7 @@ export default function WhyUs() {
         <Center>
         <Slogan>
         <SloganItem>
-            <img src="/money-check-dollar-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+            <Image src="/money-check-dollar-svgrepo-com.svg"  width={30} height={30} alt=""/>
             <h5>Great value</h5>
             <p>We offer competitive prices
                 <br/> 
@@ -111,7 +112,7 @@ export default function WhyUs() {
         </SloganItem>
         <span></span>
         <SloganItem>
-        <img src="/delivery-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+        <Image src="/delivery-svgrepo-com.svg"  width={30} height={30} alt=""/>
             <h5>Worldwide shopping</h5>
             <p>We ship to over 200 countries
                 <br/>
@@ -123,7 +124,7 @@ export default function WhyUs() {
         <span></span>
 
         <SloganItem>
-        <img src="/payment-card-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+        <Image src="/payment-card-svgrepo-com.svg"  width={30} height={30} alt=""/>
             <h5>Safe payment</h5>
             <p>Pay with the world’s most
                 <br/>
@@ -135,7 +136,7 @@ export default function WhyUs() {
         <span></span>
 
         <SloganItem>
-        <img src="/shield-checkmark-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+        <Image src="/shield-checkmark-svgrepo-com.svg"  width={30} height={30} alt=""/>
             <h5>Shop with confidence</h5>
             <p>Our Buyer Protection policy 
                 <br/>
@@ -147,7 +148,7 @@ export default function WhyUs() {
         <span></span>
         
         <SloganItem>
-        <img src="/call-center-person-3-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+        <Image src="/call-center-person-3-svgrepo-com.svg"  width={30} height={30} alt=""/>
             <h5># center</h5>
             <p>Round-the-clock assistance 
                 <br/>
@@ -158,8 +159,8 @@ export default function WhyUs() {
         <span></span>
         <SloganItem>
             <div>
-            <img src="/android-svgrepo-com(1).svg"  width="30px" heigth="30px" alt=""/>
-            <img src="/apple-svgrepo-com.svg"  width="30px" heigth="30px" alt=""/>
+            <Image src="/android-svgrepo-com(1).svg"  width={30} height={30} alt=""/>
+            <Image src="/apple-svgrepo-com.svg" width={30} height={30} alt=""/>
 
 
             </div>

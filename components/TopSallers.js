@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Center from './Center';
 import SallersProductBox from './SallersProductBox';
-import { CartContext } from './CartContext';
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";

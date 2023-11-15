@@ -1,9 +1,9 @@
-import Header from '@/components/Header'
+import Header from '../components/Header'
 import React from 'react';
-import { Caterogy } from '@/models/Category';
-import { mongooseConnect } from "@/lib/mongoose";
+import { Caterogy } from '../models/Category';
+import { mongooseConnect } from "../lib/mongoose";
 import styled from 'styled-components';
-import { primary } from "@/lib/colors";
+import { primary } from "../lib/colors";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai';
 import 'react-icons/ai';
 import { useRef, useEffect } from 'react';
@@ -12,8 +12,8 @@ import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
 import { useState } from 'react';
-import FiltredProduct from '@/components/FiltredProduct';
-import { Product } from '@/models/Product';
+import FiltredProduct from '../components/FiltredProduct';
+import { Product } from '../models/Product';
 const Container=styled.div`
 display:grid;
 grid-template-columns:1fr 6fr;

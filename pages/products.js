@@ -1,7 +1,7 @@
 import Center from "@/components/Center";
-import Header from "@/components/Header";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/Product";
+import Header from "../components/Header";
+import { mongooseConnect } from "../lib/mongoose";
+import { Product } from "../models/Product";
 import styled from "styled-components";
 import ProductGrid from "../components/ProductGrid";
 const Title=styled.h1`

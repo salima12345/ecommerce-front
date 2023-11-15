@@ -1,12 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Center from "@/components/Center";
+import Center from "../components/Center";
 import {useContext, useState,useEffect} from "react";
-import {CartContext} from "@/components/CartContext";
-import BarsIcon from "@/components/icons/Bars";
-import Image from "next/image";
+import {CartContext} from "../components/CartContext";
 import Input from "./Input";
-import { primary } from "@/lib/colors";
+import { primary } from "../lib/colors";
 import CartIcon from "./icons/CartIcon";
 import { IoSearch } from "react-icons/io5";
 

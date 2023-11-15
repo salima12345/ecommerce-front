@@ -1,9 +1,7 @@
-import Button from "@/components/Button";
-import { CartContext } from "@/components/CartContext";
-import Center from "@/components/Center";
-import Header from "@/components/Header";
-import Table from "@/components/Table";
-import axios from "axios";
+import Button from "../components/Button";
+import { CartContext } from "../components/CartContext";
+import Center from "../components/Center";
+import Header from "../components/Header";
 import { useContext, useEffect, useState,useRef } from "react";
 import styled from "styled-components";
 import { useRouter } from 'next/router';

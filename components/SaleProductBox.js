@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ProductBoxWrapper = styled.div`
   background-color: #fff;
@@ -25,10 +26,7 @@ const ProductBoxWrapper = styled.div`
 
 const ProductImage = styled.div`
   height: 140px;
-  img {
-    max-width: 120px;
-    max-height: 120px;
-  }
+  
 `;
 
 const Title = styled.h2`
@@ -80,7 +78,7 @@ export default function SaleProductBox({_id, title, images, discountPercentage, 
       <Link href={getProductUrl(_id)}>
         <ProductImage>
           <DiscountRow>-% {discountPercentage}</DiscountRow>
-          <img src={images?.[0]} alt="" />
+          <Image src={images?.[0]}  width={120} height={120} alt="" />
         </ProductImage>
       </Link>
       <DiscountInfo>

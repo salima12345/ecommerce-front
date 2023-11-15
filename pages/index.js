@@ -1,16 +1,13 @@
-import Featured from "@/components/Featured";
-import Header from "@/components/Header";
-import NewSalesCategory from "@/components/NewSale";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/Product";
-import { Caterogy } from "@/models/Category";
-import { Order } from "@/models/Order";
-import mongoose from "mongoose";
-import axios from 'axios';
-import TopSallers from "@/components/TopSallers";
-import MoreToLove from "@/components/MoreToLove";
-import WhyUs from "@/components/WhyUs";
-import Footer from "@/components/Footer";
+import Featured from "../components/Featured";
+import Header from "../components/Header";
+import NewSalesCategory from "../components/NewSale";
+import { mongooseConnect } from "../lib/mongoose";
+import { Product } from "../models/Product";
+import { Caterogy } from "../models/Category";
+import TopSallers from "../components/TopSallers";
+import MoreToLove from "../components/MoreToLove";
+import WhyUs from "../components/WhyUs";
+import Footer from "../components/Footer";
 
 
 export default function HomePage({productsOnSale,allcategories,categories, mostSoldProducts ,productItems, targetDate}) {
