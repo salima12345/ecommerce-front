@@ -20,7 +20,7 @@ const nextConfig = {
     return config;
   },
   experimental: {
-    largePageDataBytes: 256 * 1024, 
+    largePageDataBytes: 800 * 1000,
   },
  }
  
