@@ -15,6 +15,7 @@ export default function HomePage({productsOnSale,allcategories,categories, mostS
   return (
     <div>
       <Header />
+      <Featured  productsOnSale={productsOnSale} categories={categories}  allcategories={allcategories}/>
       <NewSalesCategory  productsOnSale={productsOnSale}  targetDate={ targetDate} />
       <TopSallers   mostSoldProducts ={ mostSoldProducts }/>
      
@@ -54,11 +55,34 @@ export  async function getServerSideProps(){
   await mongooseConnect();
 
    const productItems=await Product.find({},null,{sort:{'_id':1}})
+   const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
    // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
 // Cette approche économise du temps en évitant une suppression complète et une réinsertion.
 
+const categoriesWithoutParent = await Caterogy.find(
+  { parent: { $exists: false } },
+  null,
+  { sort: { '_id': 1 } }
+);
 
+const latestCategoryWithoutParent = await Caterogy.findOne(
+  { parent: { $exists: false } },
+  null,
+  { sort: { '_id': -1 } }
+);
+
+const insertIndex = 0;
+
+const updatedCategoriesWithoutParent = categoriesWithoutParent.filter(
+  (category) => category._id.toString() !== latestCategoryWithoutParent._id.toString()
+);
+
+const categories = [
+  ...updatedCategoriesWithoutParent.slice(0, insertIndex),
+  latestCategoryWithoutParent,
+  ...updatedCategoriesWithoutParent.slice(insertIndex)
+];  
 const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8});
   const DealsItem=await Product.find({ sale: true });
   const newSales= await Caterogy.find({sale: true },null,{sort:{'_id':-1},limit:5}) ;
@@ -72,8 +96,10 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},li
                                           
     props:{
       productsOnSale: JSON.parse(JSON.stringify(productsOnSale)),
+      allcategories:JSON.parse(JSON.stringify(allcategories)),
 
       newSales:JSON.parse(JSON.stringify(newSales)),
+      categories:JSON.parse(JSON.stringify(categories)),
       productItems:JSON.parse(JSON.stringify(productItems)),
       DealsItem:JSON.parse(JSON.stringify(DealsItem)),
 
