@@ -16,9 +16,15 @@ const nextConfig = {
       ...config.resolve.alias,
       'react-card-slider-component/dist/Slider.css': false,
     };
+   
+   
  
     return config;
   },
+  experimental: {
+    forceSwcTransforms: true,
+  },
+ 
  
 
  }
