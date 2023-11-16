@@ -425,7 +425,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
       <Center>
         <ColWrapper>
           <WhiteBox>
-          <ProductImages images={product.colors.find(color => color.name === selectedColor)?.images || product.images} />
+          <ProductImages images={product.colors.find(color => color.name === selectedColor)?.images || product.images} alt="" />
           </WhiteBox>
           <ProductDetails>
             <Desc>{product.description}</Desc>
@@ -467,6 +467,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
  width={70}
  height={100}
  onClick={() => handleColorClick(product.colors[0].name)}
+
 />
 
         <div>
@@ -702,7 +703,7 @@ return (
     <>
     <NoComment>
     <div>
-      <Image width={30}  height={30} src="/comment-3-svgrepo-com.svg"/>
+      <Image width={30}  height={30} src="/comment-3-svgrepo-com.svg" alt=""/>
       <p>No comment</p>
     </div>
     <div>
