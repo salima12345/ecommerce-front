@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from "react";
 import { useSession,signOut } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 
@@ -153,7 +154,7 @@ gap:10px;
 font-weight:bold;
 
 `;
-const Image=styled.img`
+const ImageBurger=styled(Image)`
 fill: #505050; 
 width: 20px;
 height: 20px;
@@ -617,7 +618,7 @@ export default function Featured({categories,allcategories,productsOnSale}){
             </CatTitle>
        <CatLinks  isVisible={isCategoriesVisible}>
         <Cross>
-          <img src="/cross-svgrepo-com.svg" alt="" width={30} height={30} onClick={() => setIsCategoriesVisible(false)}  />
+          <ImageBurger src="/cross-svgrepo-com.svg" alt="" width={30} height={30} onClick={() => setIsCategoriesVisible(false)}  />
           <Logo href={'/'}>
          
          Brand           
@@ -631,7 +632,7 @@ export default function Featured({categories,allcategories,productsOnSale}){
             isActive={hoveredCategoryId === category._id}
           >
             <div>
-    <img src={category.image[0]} alt="Icon" width={20} height={20} />
+    <Image src={category.image[0]} alt="Icon" width={20} height={20} />
   </div>
                   {category.name}   
   
@@ -683,16 +684,16 @@ export default function Featured({categories,allcategories,productsOnSale}){
                 transitionTime={500}
               >
                 <div>
-                  <img src="/image_1.png" alt="Image 1" />
+                  <Image src="/image_1.png" alt="Image 1" width={500} height={300}  layout="responsive"/>
                 </div>
                 <div>
-                  <img src="/image_2.png" alt="Image 2" />
+                  <Image src="/image_2.png" alt="Image 2" width={500} height={300}  layout="responsive"/>
                 </div>
                 <div>
-                  <img src="/image_3.png" alt="Image 3" />
+                  <Image src="/image_3.png" alt="Image 3" width={500} height={300} layout="responsive" />
                 </div>
                 <div>
-                  <img src="/image_4.png" alt="Image 4" />
+                  <Image src="/image_4.png" alt="Image 4" width={500} height={300} layout="responsive" />
                 </div>
               </CustomCarousel>
               <Deal>
@@ -717,9 +718,13 @@ export default function Featured({categories,allcategories,productsOnSale}){
                 {productsOnSale.map((product) => (
                   <Item key={product._id}>
           <Link href={getProductUrl(product._id)} >
-            <img
+            <Image
               src={product.images[0]}
               alt={product.title}
+              width={80}
+              height={80}
+            
+
             />
           </Link>
                   <Link href={getProductUrl(product._id)}>
@@ -746,7 +751,7 @@ export default function Featured({categories,allcategories,productsOnSale}){
 
            </Banner>
            <Bloc>
-           <img src="/avaaatar.png" alt=""/> 
+           <Image src="/avaaatar.png" alt="" width={40} height={50}/> 
           
            {session ? (
               <div>
@@ -786,11 +791,11 @@ export default function Featured({categories,allcategories,productsOnSale}){
                         >
       {productsOnSale.map((product) => (
         <div className="product-item" key={product._id}>
-          <a href={getProductUrl(product._id)}>
-          <img className="product-image" src={product.images[0]} alt={product.title} />
+          <Link href={getProductUrl(product._id)}>
+          <Image className="product-image" src={product.images[0]} alt={product.title} width={60} height={60} />
 
-          </a>
-        <a href={getProductUrl(product._id)}>
+          </Link>
+        <Link href={getProductUrl(product._id)}>
         <div className="product-price">
             MAD
             {(
@@ -798,7 +803,7 @@ export default function Featured({categories,allcategories,productsOnSale}){
               (product.price * product.discountPercentage) / 100
             ).toFixed(2)}
           </div>
-        </a>
+        </Link>
         </div>
       ))}
     </Slider>
