@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Image from 'next/image';
 
 const DealItemsContainer = styled.div`
   position: relative;
@@ -66,7 +67,7 @@ function DealItems({ productsOnSale }) {
       <Carousel responsive={responsiveMultiCarousel}>
         {productsOnSale.map((product) => (
           <Item key={product._id}>
-            <img src={product.images[0]} alt={product.title} />
+            <Image src={product.images[0]} alt={product.title} width={100}  height={80}/>
             <Price>
               MAD
               {(

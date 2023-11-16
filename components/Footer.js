@@ -3,6 +3,7 @@ import Center from "./Center";
 import { FaAndroid, FaApple } from 'react-icons/fa';
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 const Container=styled.div`
 padding:20px;
 
@@ -91,12 +92,12 @@ export default function Footer() {
                 </FooterLink>
                 <Download>
                    <DownloadFrom>
-                   <a href="https://play.google.com/store/apps">
-                    <img src="/Google.svg" />
-                </a>
-                <a href="https://www.apple.com/app-store/">
-                    <img src="/AppStore.svg" />
-                </a>
+                   <Link href="https://play.google.com/store/apps">
+                    <Image src="/Google.svg" width={200}  height={80}/>
+                </Link>
+                <Link href="https://www.apple.com/app-store/">
+                    <Image src="/AppStore.svg" width={200}  height={80}/>
+                </Link>
               </DownloadFrom>
 
                     

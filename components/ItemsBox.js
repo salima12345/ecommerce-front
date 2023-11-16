@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const ItemsWrapper=styled.div`
 width: 200px;
@@ -88,7 +89,7 @@ export default function ItemsBox({_id, images, title,price, rating, sale, discou
   return (
     <ItemsWrapper>
         <ItemImage href={url}>
-          <img src={images?.[0]} alt="" />
+          <Image src={images?.[0]} alt="" width={100} height={100} />
         </ItemImage>
        
       <ItemInfo>
