@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Image from "next/image";
 
 
 
@@ -66,18 +67,12 @@ width: 70px;
   align-items: center;
   justify-content: center;
   border-radius: 7px 0px 0px 7px;
-  img{
-    max-width: 60px;
-    max-height: 60px;
-  }
+ 
   @media screen and (min-width: 768px) {
     padding: 10px;
     width: 200px;
     height: 210px;
-    img{
-      max-width: 190px;
-      max-height: 120px;
-    }
+   
   }
 `;
 const Quantity=styled.div`
@@ -174,9 +169,9 @@ export default function CartPage() {
     } else {
       setIsCartEmpty(true);
     }
-  }, []);
+   }, [setCartProducts])
 
-  useEffect(() => {
+   useEffect(() => {
     if (cartProducts.length === 0) {
       localStorage.removeItem('cart');
       setIsCartEmpty(true);
@@ -184,9 +179,8 @@ export default function CartPage() {
       localStorage.setItem('cart', JSON.stringify(cartProducts));
       setIsCartEmpty(false);
       console.log(cartProducts);
-
     }
-  }, [cartProducts]);
+   }, [cartProducts, setCartProducts, clearCart, setIsSuccess]);
   
 
    
@@ -311,7 +305,7 @@ export default function CartPage() {
 
          {product.colors.map((color, index)=> {
       if (color.name === productInCart.color) {
-        return <img  key={index} src={color.images[0]} alt="" />;
+        return <Image  key={index} src={color.images[0]} alt="" width={60} height={60} />;
       }
       return null;
     })}

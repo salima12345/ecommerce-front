@@ -373,11 +373,11 @@ color:${primary}
   
   useEffect(() => {
     let newFilteredProducts = products;
-  
+   
     for (const propertyName in selectedPropertyValues) {
       if (selectedPropertyValues.hasOwnProperty(propertyName)) {
         const selectedValues = selectedPropertyValues[propertyName];
-  
+   
         if (selectedValues.length > 0) {
           newFilteredProducts = newFilteredProducts.filter((product) => {
             if (
@@ -392,15 +392,13 @@ color:${primary}
         }
       }
     }
-  
+   
     if (Object.values(selectedPropertyValues).every((values) => values.length === 0)) {
       newFilteredProducts = products;
     }
-  
+   
     setFilteredProducts(newFilteredProducts);
-
-
-  }, [selectedPropertyValues, products]);
+   }, [selectedPropertyValues, products]);
   
   
  

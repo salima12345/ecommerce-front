@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 import { primary } from "../../lib/colors";
 import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 
 
@@ -201,9 +202,8 @@ const OtherColorsImg=styled.div`
 display:flex;
 flex-wrap: wrap;
 `;
-const ColorImage=styled.img`
-width:70px;
-height:100px;
+const ColorImage=styled(Image)`
+
 border-radius:7px;
 margin-right:20px;
 border:1px solid white;
@@ -246,9 +246,7 @@ align-items:center;
 gap:20rem;
 padding:40px;
 
-img{
-  width:40px;
-}
+
 p{
   font-weight:500;
   font-size:20px;
@@ -403,7 +401,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
  useEffect(() => {
   const newPrice = calculateNewPrice(product.price, selectedRom);
   setProductPrice(newPrice);
- }, [selectedRom]);
+ }, [selectedRom,  product.price]);
  
  
  
@@ -463,6 +461,8 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
         <ColorImage
           src={product.colors[0].images[0]}
           alt={product.colors[0].name}
+          width={70}
+          height={100}
           onClick={() => handleColorClick(product.colors[0].name)}
         />
         <div>
@@ -471,6 +471,8 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
               key={index}
               src={color.images[0]}
               alt={color.name}
+              width={70}
+              height={100}
               onClick={() => handleColorClick(color.name)}
             />
           ))}
@@ -696,7 +698,7 @@ return (
     <>
     <NoComment>
     <div>
-      <img src="/comment-3-svgrepo-com.svg"/>
+      <Image width={30}  height={30} src="/comment-3-svgrepo-com.svg"/>
       <p>No comment</p>
     </div>
     <div>
