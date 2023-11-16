@@ -402,7 +402,7 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
   const newPrice = calculateNewPrice(product.price, selectedRom);
   setProductPrice(newPrice);
   // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [selectedRom, product.price]);
+ }, [selectedRom, product.price,calculateNewPrice]);
  
  
  
