@@ -6,7 +6,7 @@ import WhiteBox from "../../components/WhiteBox";
 import CartIcon from "../../components/icons/CartIcon";
 import { mongooseConnect } from "../../lib/mongoose";
 import { Product } from "../../models/Product";
-import { useContext, useState,useEffect } from "react";
+import { useContext, useState,useEffect,useCallback } from "react";
 import styled from "styled-components";
 import ProductImages from "../../components/ProductImages";
 import StarRatingComponent from "../../components/StarRating";
@@ -385,7 +385,7 @@ const handleAddToCart = () => {
   AddProduct(product._id, selectedColor, selectedSize,selectedRom);
   setAddedToCart(true);
 };
-const calculateNewPrice = (originalPrice, selectedRom) => {
+const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
   let newPrice = originalPrice;
   if( product.properties && product.properties.Rom ){
     for (let i = 0; i < product.properties.Rom.length; i++) {
@@ -394,15 +394,16 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
       }
      }
   }
- 
+  
   return newPrice;
- };
+ }, [product]);
+ 
  
  useEffect(() => {
   const newPrice = calculateNewPrice(product.price, selectedRom);
   setProductPrice(newPrice);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [selectedRom, product.price,calculateNewPrice]);
+ }, [selectedRom, product.price, calculateNewPrice]);
+ 
  
  
  
@@ -460,13 +461,14 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
     <div>
       <Property><span>Color:</span>{selectedColor}</Property>
       <OtherColorsImg>
-        <ColorImage
-          src={product.colors[0].images[0]}
-          alt={product.colors[0].name}
-          width={70}
-          height={100}
-          onClick={() => handleColorClick(product.colors[0].name)}
-        />
+      <ColorImage
+ src={product.colors[0].images[0]}
+ alt={`${product.colors[0].name} color`}
+ width={70}
+ height={100}
+ onClick={() => handleColorClick(product.colors[0].name)}
+/>
+
         <div>
           {product.colors.slice(1).map((color, index) => (
             <ColorImage

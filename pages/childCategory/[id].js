@@ -407,7 +407,7 @@ color:${primary}
   useEffect(() => {
     const sortedProducts = sortProducts(products, 'Price High To Low');
     setFilteredProducts(sortedProducts);
-  }, []);
+  }, [products]);
   
   
   
