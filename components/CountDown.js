@@ -47,14 +47,16 @@ const Countdown = ({ targetDate }) => {
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-
+   
     return () => clearInterval(timer);
-  }, []);
+   }, [calculateTimeLeft]);
+   
+   
+   
 
   return (
     <LeftTime>

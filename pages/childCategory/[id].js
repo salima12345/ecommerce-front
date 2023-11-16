@@ -376,7 +376,7 @@ color:${primary}
     for (const propertyName in selectedPropertyValues) {
       if (selectedPropertyValues.hasOwnProperty(propertyName)) {
         const selectedValues = selectedPropertyValues[propertyName];
-   
+    
         if (selectedValues.length > 0) {
           newFilteredProducts = newFilteredProducts.filter((product) => {
             if (
@@ -391,14 +391,14 @@ color:${primary}
         }
       }
     }
-   
+    
     if (Object.values(selectedPropertyValues).every((values) => values.length === 0)) {
       newFilteredProducts = products;
     }
-   
+    
     setFilteredProducts(newFilteredProducts);
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [products, selectedPropertyValues]);
+   
    
   
   

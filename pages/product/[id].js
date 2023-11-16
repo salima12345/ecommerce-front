@@ -401,7 +401,9 @@ const calculateNewPrice = (originalPrice, selectedRom) => {
  useEffect(() => {
   const newPrice = calculateNewPrice(product.price, selectedRom);
   setProductPrice(newPrice);
- }, [selectedRom,  product.price]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [selectedRom, product.price]);
+ 
  
  
  

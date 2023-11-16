@@ -92,12 +92,7 @@ export default function Footer() {
                 </FooterLink>
                 <Download>
                    <DownloadFrom>
-                   <Link href="https://play.google.com/store/apps">
-                    <Image src="/Google.svg" width={200}  height={80}/>
-                </Link>
-                <Link href="https://www.apple.com/app-store/">
-                    <Image src="/AppStore.svg" width={200}  height={80}/>
-                </Link>
+                   
               </DownloadFrom>
 
                     

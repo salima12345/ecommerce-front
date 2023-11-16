@@ -419,7 +419,7 @@ a:last-child {
   useEffect(() => {
     const sortedProducts = sortProducts(products, 'Price High To Low');
     setFilteredProducts(sortedProducts);
-  }, []);
+  }, [products]);
   
   
   
