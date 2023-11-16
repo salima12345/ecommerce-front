@@ -10,18 +10,24 @@ export function CartContextProvider({children}) {
     if (cartProducts?.length > 0) {
       ls?.setItem('cart', JSON.stringify(cartProducts));
     }
-  }, [cartProducts]);
-  useEffect(() => {
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+   
+   useEffect(() => {
     if (ls && ls.getItem('cart')) {
       setCartProducts(JSON.parse(ls.getItem('cart')));
     }
-  }, []);
-  useEffect(() => {
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+   
+   useEffect(() => {
     if (isSuccess) {
       setCartProducts([]);
       ls?.setItem('cart', JSON.stringify([]));
     }
-  }, [isSuccess]);
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+   
   
   
   

@@ -204,13 +204,12 @@ export default function CartPage() {
           return;
         }
         if (window?.location.href.includes('success')) {
-          setIsSuccess(true);         
-           clearCart();
-
-
+          setIsSuccess(true);        
+          clearCart();
         }
-      }, [isSuccess]);
-     
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+       }, []);
+       
     
       
       
