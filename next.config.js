@@ -22,6 +22,9 @@ const nextConfig = {
   experimental: {
     largePageDataBytes: 800 * 100000,
   },
+  api: {
+    responseLimit: '8mb',
+},
  }
  
  module.exports = nextConfig
