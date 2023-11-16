@@ -233,7 +233,7 @@ position:relative;
   `;
  
 
-const ActiveLink = styled(Link)`
+  const ActiveLink = styled(({ isActive, ...props }) => <Link {...props} />)`
 text-decoration: none;
 margin-left: 10px;
 cursor: pointer;
@@ -244,15 +244,12 @@ font-family: Inter;
 font-size: 16px;
 font-style: normal;
 
-
-
 &:hover {
-  font-weight: ${({ isActive }) => (isActive ? "500" : "400")};
-  height:30px;
-  background-color:#E5F1FF;
-  margin-left:0px;
-  padding-left:10px;
- 
+ font-weight: ${({ isActive }) => (isActive ? "500" : "400")};
+ height:30px;
+ background-color:#E5F1FF;
+ margin-left:0px;
+ padding-left:10px;
 }
 }
  
