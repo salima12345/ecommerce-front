@@ -180,7 +180,9 @@ export default function CartPage() {
       setIsCartEmpty(false);
       console.log(cartProducts);
     }
-   }, [cartProducts, setCartProducts, clearCart, setIsSuccess]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+   
   
 
    

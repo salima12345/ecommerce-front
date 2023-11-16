@@ -370,10 +370,9 @@ color:${primary}
     
   };
   
-  
   useEffect(() => {
     let newFilteredProducts = products;
-   
+    
     for (const propertyName in selectedPropertyValues) {
       if (selectedPropertyValues.hasOwnProperty(propertyName)) {
         const selectedValues = selectedPropertyValues[propertyName];
@@ -398,7 +397,9 @@ color:${primary}
     }
    
     setFilteredProducts(newFilteredProducts);
-   }, [selectedPropertyValues, products]);
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+   
   
   
  
