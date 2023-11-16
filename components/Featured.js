@@ -819,3 +819,4 @@ export default function Featured({categories,allcategories,productsOnSale}){
        </Bg>
     )
 }
+
