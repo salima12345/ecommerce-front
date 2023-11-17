@@ -51,11 +51,17 @@ async function getMostSoldProducts() {
 
 
 export  async function getServerSideProps(){
+  console.log('getServerSideProps start');
+
 
   await mongooseConnect();
 
    const productItems=await Product.find({},null,{sort:{'_id':1}})
+   console.log('Product items:', productItems);
+
    const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
+   console.log('All categories:', allcategories);
+
    // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
 // Cette approche économise du temps en évitant une suppression complète et une réinsertion.
