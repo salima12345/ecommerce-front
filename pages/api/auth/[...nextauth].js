@@ -3,8 +3,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from "next-auth/providers/facebook";
 
-import User from '../../models/User';
-import { mongooseConnect } from '../../lib/mongoose';
+import User from '@/models/User';
+import { mongooseConnect } from '@/lib/mongoose';
 import { compare } from 'bcryptjs';
 
 
