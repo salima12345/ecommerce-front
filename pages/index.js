@@ -58,7 +58,7 @@ export  async function getServerSideProps(){
 
   const productItems = await Product.find({}, null, { sort: { '_id': 1 }, skip: 10, limit: 10 }).select('title price images discount');
 
-   const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
+  const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } }).select('name');
 
    // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
