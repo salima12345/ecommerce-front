@@ -57,10 +57,8 @@ export  async function getServerSideProps(){
   await mongooseConnect();
 
    const productItems=await Product.find({},null,{sort:{'_id':1}})
-   console.log('Product items:', productItems);
 
    const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
-   console.log('All categories:', allcategories);
 
    // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
@@ -89,8 +87,8 @@ const categories = [
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
-const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price image discount properties');
-  const DealsItem=await Product.find({ sale: true }).select('title price image discount properties');
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price images discount properties');
+  const DealsItem=await Product.find({ sale: true }).select('title price images discount properties');
   
     const mostSoldProducts = await getMostSoldProducts();
 
