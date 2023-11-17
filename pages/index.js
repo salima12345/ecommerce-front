@@ -70,7 +70,7 @@ const categoriesWithoutParent = await Caterogy.find(
   { parent: { $exists: false } },
   null,
   { sort: { '_id': 1 } }
-);
+).select('name image');
 
 const latestCategoryWithoutParent = await Caterogy.findOne(
   { parent: { $exists: false } },
@@ -89,9 +89,8 @@ const categories = [
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
-const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8});
-  const DealsItem=await Product.find({ sale: true });
-  const newSales= await Caterogy.find({sale: true },null,{sort:{'_id':-1},limit:5}) ;
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price image discount');
+  const DealsItem=await Product.find({ sale: true }).select('title price image discount');
   
     const mostSoldProducts = await getMostSoldProducts();
 
@@ -104,7 +103,6 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},li
       productsOnSale: JSON.parse(JSON.stringify(productsOnSale)),
       allcategories:JSON.parse(JSON.stringify(allcategories)),
 
-      newSales:JSON.parse(JSON.stringify(newSales)),
       categories:JSON.parse(JSON.stringify(categories)),
       productItems:JSON.parse(JSON.stringify(productItems)),
       DealsItem:JSON.parse(JSON.stringify(DealsItem)),
