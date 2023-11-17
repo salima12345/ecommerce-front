@@ -37,7 +37,7 @@ async function getMostSoldProducts() {
         countSales: { $gt: 0 }, 
       },
       null,    
-        { sort: { countSales: -1 }, skip: 7,limit: 7}.select('title price images discount')
+        { sort: { countSales: -1 }, skip: 5,limit: 5}.select('title price images discount')
     );
 
     return mostSoldProducts;
