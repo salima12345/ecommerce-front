@@ -74,7 +74,7 @@ const latestCategoryWithoutParent = await Caterogy.findOne(
   { parent: { $exists: false } },
   null,
   { sort: { '_id': -1 } }
-);
+).select('name image');
 
 const insertIndex = 0;
 
@@ -87,7 +87,7 @@ const categories = [
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
-const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price images discount ');
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},skip:5,limit:5}).select('title price images discount ');
   const DealsItem=await Product.find({ sale: true }).select('title price images discount');
   
     const mostSoldProducts = await getMostSoldProducts();
