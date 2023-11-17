@@ -4,9 +4,14 @@ const nextConfig = {
   images:{
     domains:['res.cloudinary.com']
   },
+
   compiler:{
     styledComponents:true,
   },
+  serverless: {
+    maxPayload: 10 * 1024 * 1024, 
+    compress: true,
+   },
   webpack: (config, { isServer }) => {
     if (isServer) {
       return config;
