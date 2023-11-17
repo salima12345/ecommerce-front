@@ -16,35 +16,14 @@ export default function HomePage({productsOnSale,allcategories,categories, mostS
     <div>
       <Header />
       <Featured  productsOnSale={productsOnSale} categories={categories}  allcategories={allcategories}/>
-      <NewSalesCategory  productsOnSale={productsOnSale}  targetDate={ targetDate} />
-      <TopSallers   mostSoldProducts ={ mostSoldProducts }/>
      
        <WhyUs/>
       <Footer></Footer>
     </div>
   );
 }
-async function getMostSoldProducts() {
-  try {
-    const currentDate = new Date();
-    const thirtyDaysAgo = new Date(currentDate);
-    thirtyDaysAgo.setDate(currentDate.getDate() - 30);
 
-    const mostSoldProducts = await Product.find(
-      {
-        createdAt: { $gte: thirtyDaysAgo, $lte: currentDate },
-        countSales: { $gt: 0 }, 
-      },
-      null,
-      { sort: { countSales: -1 }, limit: 10 } 
-    );
 
-    return mostSoldProducts;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des produits les plus vendus :", error);
-    return [];
-  }
-}
 
 
 
@@ -89,7 +68,6 @@ const categories = [
 const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price images discount properties');
   const DealsItem=await Product.find({ sale: true }).select('title price images discount properties');
   
-    const mostSoldProducts = await getMostSoldProducts();
 
   const targetDate = new Date('2024-01-31T23:59:59').toISOString(); 
 
@@ -104,7 +82,6 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},li
       DealsItem:JSON.parse(JSON.stringify(DealsItem)),
 
       targetDate,
-      mostSoldProducts: JSON.parse(JSON.stringify(mostSoldProducts)),
 
     },
   }
