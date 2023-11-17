@@ -56,11 +56,9 @@ export  async function getServerSideProps(){
 
   await mongooseConnect();
 
-   const productItems=await Product.find({},null,{sort:{'_id':1}})
-   console.log('Product items:', productItems);
+   const productItems=await Product.find({},null,{sort:{'_id':1},limit:10})
 
    const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
-   console.log('All categories:', allcategories);
 
    // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
