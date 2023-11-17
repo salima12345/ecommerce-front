@@ -36,8 +36,8 @@ async function getMostSoldProducts() {
         createdAt: { $gte: thirtyDaysAgo, $lte: currentDate },
         countSales: { $gt: 0 }, 
       },
-      null,
-      { sort: { countSales: -1 }, limit: 10 } 
+      null,    
+        { sort: { countSales: -1 }, skip: 7,limit: 7}.select('title price images discount')
     );
 
     return mostSoldProducts;
