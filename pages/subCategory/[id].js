@@ -226,7 +226,7 @@ a:last-child {
   
   const [selectedOption, setSelectedOption] = useState('Price High To Low'); 
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const properties = category.properties || [];
+  const properties = category?.properties || [];
   const [selectedPropertyValues, setSelectedPropertyValues] = useState({});
   const [showAllPropertyValues, setShowAllPropertyValues] = useState(false);
   const propertiesWithValues = properties.map((property) => {
@@ -392,10 +392,10 @@ a:last-child {
         if (selectedValues.length > 0) {
           newFilteredProducts = newFilteredProducts.filter((product) => {
             if (
-              product.properties &&
-              product.properties.hasOwnProperty(propertyName)
+              product?.properties &&
+              product?.properties.hasOwnProperty(propertyName)
             ) {
-              const productValues = product.properties[propertyName].flat();
+              const productValues = product?.properties[propertyName].flat();
               return selectedValues.some((value) => productValues.includes(value));
             }
             return false;

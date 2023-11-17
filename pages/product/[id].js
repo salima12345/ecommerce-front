@@ -321,10 +321,10 @@ function ProductPage({ product,relatedProducts,commentss ,avgRating}) {
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
 const [selectedSize, setSelectedSize] = useState(
-  product.properties && product.properties.Size ? product.properties.Size[0] : ''
+  product?.properties && product.properties.Size ? product.properties.Size[0] : ''
 ); 
 const [selectedRom, setSelectedRom] = useState(
-  product.properties && product.properties.Rom ? product.properties.Rom[0] : ''
+  product?.properties && product.properties.Rom ? product.properties.Rom[0] : ''
 );   
 const [addedToCart, setAddedToCart] = useState(false);
 const [productPrice, setProductPrice] = useState(product.price);
@@ -387,9 +387,9 @@ const handleAddToCart = () => {
 };
 const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
   let newPrice = originalPrice;
-  if( product.properties && product.properties.Rom ){
-    for (let i = 0; i < product.properties.Rom.length; i++) {
-      if (selectedRom > product.properties.Rom[i]) {
+  if( product?.properties && product?.properties.Rom ){
+    for (let i = 0; i < product?.properties.Rom.length; i++) {
+      if (selectedRom > product?.properties.Rom[i]) {
         newPrice += originalPrice * 0.20;
       }
      }
@@ -490,16 +490,16 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
      </Colors>
  
 <Selectable>
-{product.properties && product.properties.Size && (
+{product?.properties && product?.properties.Size && (
     <Property>
       <span>Size:</span>{selectedSize}
     </Property>
   )}
 
     <SelectableContainer>
-    {product.properties?.Size ? (
-      product.properties.Size.length > 0 ? (
-        product.properties.Size.map((size, index) => (
+    {product?.properties?.Size ? (
+      product?.properties.Size.length > 0 ? (
+        product?.properties.Size.map((size, index) => (
           <>
          
           <SelectableValue key={index}
@@ -520,7 +520,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
  
 
 <Selectable>
-{product.properties && product.properties.Rom && (
+{product?.properties && product?.properties.Rom && (
     <Property>
       <span>Rom:</span>{selectedRom}
     </Property>

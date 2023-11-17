@@ -89,8 +89,8 @@ const categories = [
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
-const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price image discount');
-  const DealsItem=await Product.find({ sale: true }).select('title price image discount');
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price image discount properties');
+  const DealsItem=await Product.find({ sale: true }).select('title price image discount properties');
   
     const mostSoldProducts = await getMostSoldProducts();
 
