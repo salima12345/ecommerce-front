@@ -1,0 +1,3 @@
+[submodule "ecommerce-front"]
+	path = ecommerce-front
+	url = https://github.com/salima12345/ecommerce-front.git
