@@ -19,7 +19,6 @@ export default function HomePage({productsOnSale,allcategories,categories, mostS
       <NewSalesCategory  productsOnSale={productsOnSale}  targetDate={ targetDate} />
       <TopSallers   mostSoldProducts ={ mostSoldProducts }/>
      
-      <MoreToLove productItems={productItems}/>
        <WhyUs/>
       <Footer></Footer>
     </div>
@@ -102,7 +101,6 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},li
       allcategories:JSON.parse(JSON.stringify(allcategories)),
 
       categories:JSON.parse(JSON.stringify(categories)),
-      productItems:JSON.parse(JSON.stringify(productItems)),
       DealsItem:JSON.parse(JSON.stringify(DealsItem)),
 
       targetDate,
