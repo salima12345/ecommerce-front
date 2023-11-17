@@ -66,10 +66,8 @@ const categories = [
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
 const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},limit:8}).select('title price images discount properties');
-  const DealsItem=await Product.find({ sale: true }).select('title price images discount properties');
   
 
-  const targetDate = new Date('2024-01-31T23:59:59').toISOString(); 
 
   return {
 
@@ -79,9 +77,7 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},li
       allcategories:JSON.parse(JSON.stringify(allcategories)),
 
       categories:JSON.parse(JSON.stringify(categories)),
-      DealsItem:JSON.parse(JSON.stringify(DealsItem)),
 
-      targetDate,
 
     },
   }
