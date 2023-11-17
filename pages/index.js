@@ -34,11 +34,12 @@ async function getMostSoldProducts() {
     const mostSoldProducts = await Product.find(
       {
         createdAt: { $gte: thirtyDaysAgo, $lte: currentDate },
-        countSales: { $gt: 0 }, 
-      },
-      null,    
-        { sort: { countSales: -1 }, skip: 5,limit: 5}.select('title price images  discountPercentage')
-    );
+        countSales: { $gt: 0 },
+      }
+    )
+      .select('title price images discountPercentage')
+      .skip(5)
+      .limit(5);
 
     return mostSoldProducts;
   } catch (error) {
@@ -60,7 +61,7 @@ export  async function getServerSideProps(){
 
   const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } }).select('name');
 
-   // Nous réorganisons les catégories pour des modification au niveau des categories
+// Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
 // Cette approche économise du temps en évitant une suppression complète et une réinsertion.
 
