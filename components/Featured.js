@@ -292,10 +292,7 @@ background-position: center;
 border-radius: 5px;
 width:25%;
 text-align:center;
-img{
-  width:50px;
-  margin-top:10px;
-}
+
 p{
   font-weight:bold;
   color:black;
@@ -751,8 +748,15 @@ export default function Featured({categories,allcategories,productsOnSale}){
 
            </Banner>
            <Bloc>
-           <Image src="/avaaatar.png" alt="" width={40} height={50}/> 
-          
+           <Image 
+ src="/avaaatar.png" 
+ alt="" 
+ width={40} 
+ height={50} 
+ onError={(e) => {
+   console.error("Erreur lors du chargement de l'image :", e);
+ }}
+/>          
            {session ? (
               <div>
                 <p>Welcome {session.user.name}</p>

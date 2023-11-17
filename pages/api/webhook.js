@@ -1,8 +1,8 @@
-import {mongooseConnect} from "@/lib/mongoose";
+import {mongooseConnect} from "../../lib/mongoose";
 const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SK);
 import {buffer} from 'micro';
-import {Order} from "@/models/Order";
-import { Product } from "@/models/Product";
+import {Order} from "../../models/Order";
+import { Product } from "../../models/Product";
 
 const endpointSecret = "whsec_2327a0cb275615a98eb603ee860550f0bbb73b7f0b582f9a3039792ebe57bfcb";
 export default async function handler(req,res) {

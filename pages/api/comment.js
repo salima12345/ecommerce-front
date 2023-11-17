@@ -1,6 +1,6 @@
-import Comment from "@/models/Comment";
-import User from "@/models/User";
-import { Product } from "@/models/Product";
+import Comment from "../../models/Comment";
+import User from "../../models/User";
+import { Product } from "../../models/Product";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
