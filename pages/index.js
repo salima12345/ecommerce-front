@@ -17,7 +17,7 @@ export default function HomePage({productsOnSale,allcategories,categories, mostS
       <Header />
       <Featured  productsOnSale={productsOnSale} categories={categories}  allcategories={allcategories}/>
       <NewSalesCategory  productsOnSale={productsOnSale}  targetDate={ targetDate} />
-      <TopSallers   mostSoldProducts ={ mostSoldProducts }/>
+      <TopSallers   mostSoldProducts ={ mostSoldProducts } />
      
       <MoreToLove productItems={productItems}/>
        <WhyUs/>
@@ -37,7 +37,7 @@ async function getMostSoldProducts() {
         countSales: { $gt: 0 }, 
       },
       null,    
-        { sort: { countSales: -1 }, skip: 5,limit: 5}.select('title price images discount')
+        { sort: { countSales: -1 }, skip: 5,limit: 5}.select('title price images  discountPercentage')
     );
 
     return mostSoldProducts;
@@ -56,7 +56,7 @@ export  async function getServerSideProps(){
 
   await mongooseConnect();
 
-  const productItems = await Product.find({}, null, { sort: { '_id': 1 }, skip: 10, limit: 10 }).select('title price images discount');
+  const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 10, limit: 10 }).select('title price images discount');
 
   const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } }).select('name');
 
@@ -87,8 +87,8 @@ const categories = [
   latestCategoryWithoutParent,
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
-const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':-1},skip:5,limit:5}).select('title price images discount ');
-  const DealsItem=await Product.find({ sale: true }).select('title price images discount');
+const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':1},skip:5,limit:5}).select('title price images discountPercentage ');
+  const DealsItem=await Product.find({ sale: true }).select('title price images  discountPercentage');
   
     const mostSoldProducts = await getMostSoldProducts();
 
