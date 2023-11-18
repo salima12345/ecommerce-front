@@ -584,6 +584,8 @@ export default function Featured({categories,allcategories,productsOnSale}){
     setHoveredCategoryId(category_id);
     try {
       const response = await axios.get(`/api/categories?parentId=${category_id}`);
+      console.log("Hovered child categories:", response.data);
+
       setHoveredChildCategories(response.data);
     } catch (error) {
       console.error("Error fetching child categories:", error);
@@ -641,10 +643,13 @@ export default function Featured({categories,allcategories,productsOnSale}){
        
       </Categories>
       {hoveredCategoryId  && (
+
    <HoveredCategories
 
    onMouseLeave={handleParentCategoryLeave}
    >
+{console.log("Hovered child categories in render:", hoveredChildCategories)}
+
    {hoveredChildCategories.map((childCategory) => (
      <Cat key={childCategory._id}>
        <div>
