@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   try {
     
-    const childCategories = await Caterogy.find({ parent: parentId }).select('name properties');
+    const childCategories = await Caterogy.find({ parent: parentId });
     res.status(200).json(childCategories);
   } catch (error) {
     console.error("Error fetching child categories:", error);
