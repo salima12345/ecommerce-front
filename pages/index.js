@@ -57,7 +57,7 @@ export  async function getServerSideProps(){
 
   await mongooseConnect();
 
-  const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 5, limit: 5 }).select('title price images discount');
+  const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 6, limit: 6 }).select('title price images discount');
 
   const allcategories = await Category.find({}, null, { sort: { '_id': 1 } });
 
@@ -89,7 +89,6 @@ const categories = [
   ...updatedCategoriesWithoutParent.slice(insertIndex)
 ];  
 const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':1},skip:2,limit:5}).select('title price images discountPercentage ');
-  const DealsItem=await Product.find({ sale: true }).select('title price images  discountPercentage');
   
     const mostSoldProducts = await getMostSoldProducts();
 
@@ -104,7 +103,6 @@ const productsOnSale = await Product.find({sale: true },null,{sort:{'_id':1},ski
 
       categories:JSON.parse(JSON.stringify(categories)),
       productItems:JSON.parse(JSON.stringify(productItems)),
-      DealsItem:JSON.parse(JSON.stringify(DealsItem)),
 
       targetDate,
       mostSoldProducts: JSON.parse(JSON.stringify(mostSoldProducts)),
