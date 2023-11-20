@@ -752,11 +752,9 @@ export default function Featured({categories,allcategories,productsOnSale}){
            <Image 
  src="/avaaatar.png" 
  alt="" 
- width={40} 
- height={50} 
- onError={(e) => {
-   console.error("Erreur lors du chargement de l'image :", e);
- }}
+ width={100} 
+ height={100} 
+
 />          
            {session ? (
               <div>

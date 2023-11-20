@@ -54,7 +54,7 @@ margin-top:60px;
 
 
 export default function MoreToLove({ productItems }) {
-  const [visibleProducts, setVisibleProducts] = useState(15); 
+  const [visibleProducts, setVisibleProducts] = useState(5); 
 
   const handleViewMoreClick = () => {
     if (visibleProducts + 5 <= productItems.length) {
@@ -65,7 +65,7 @@ export default function MoreToLove({ productItems }) {
   };
 
   const handleViewLessClick = () => {
-    setVisibleProducts(15); 
+    setVisibleProducts(5); 
   };
 
   return (
