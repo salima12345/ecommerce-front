@@ -38,7 +38,6 @@ async function getMostSoldProducts() {
       }
     )
       .select('title price images discountPercentage')
-      .skip(5)
       .limit(5);
 
     return mostSoldProducts;
