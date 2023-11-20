@@ -1,6 +1,6 @@
 import Header from '../../components/Header'
 import React from 'react';
-import { Caterogy } from '../../models/Category';
+import { Category } from '../../models/Category';
 import { mongooseConnect } from "../../lib/mongoose";
 import styled from 'styled-components';
 import { primary } from "../../lib/colors";
@@ -229,6 +229,7 @@ a:last-child {
   const properties = category?.properties || [];
   const [selectedPropertyValues, setSelectedPropertyValues] = useState({});
   const [showAllPropertyValues, setShowAllPropertyValues] = useState(false);
+  
   const propertiesWithValues = properties.map((property) => {
     return {
       name: property.name,
@@ -596,7 +597,7 @@ export async function getServerSideProps(context) {
     await mongooseConnect();
     const { id } = context.query;
   
-    const category = await Caterogy.findById(id);
+    const category = await Category.findById(id);
     if (!category) {
       return {
         notFound: true,
@@ -607,11 +608,11 @@ export async function getServerSideProps(context) {
     const products = [];
     let parentCategory = null;
     if (category.parent) {
-      parentCategory = await Caterogy.findById(category.parent);
+      parentCategory = await Category.findById(category.parent);
     }
     let globalCategory=null;
     if (parentCategory.parent) {
-      globalCategory = await Caterogy.findById(parentCategory.parent);
+      globalCategory = await Category.findById(parentCategory.parent);
     }
     
 
