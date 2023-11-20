@@ -582,13 +582,11 @@ export default function Featured({categories,allcategories,productsOnSale}){
   };
   const handleParentCategoryHover = async (category_id) => {
     setHoveredCategoryId(category_id);
-  
     try {
-      const childCategories = await Caterogy.find({ parent: category_id });
-  
-      console.log("Hovered child categories:", childCategories);
-  
-      setHoveredChildCategories(childCategories);
+      const response = await axios.get(`/api/categories?parentId=${category_id}`);
+      console.log("Hovered child categories:", response.data);
+
+      setHoveredChildCategories(response.data);
     } catch (error) {
       console.error("Error fetching child categories:", error);
     }

@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import NewSalesCategory from "../components/NewSale";
 import { mongooseConnect } from "../lib/mongoose";
 import { Product } from "../models/Product";
-import { Caterogy } from "../models/Category";
+import { Category } from "../models/Category";
 import TopSallers from "../components/TopSallers";
 import MoreToLove from "../components/MoreToLove";
 import WhyUs from "../components/WhyUs";
@@ -59,19 +59,19 @@ export  async function getServerSideProps(){
 
   const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 10, limit: 10 }).select('title price images discount');
 
-  const allcategories = await Caterogy.find({}, null, { sort: { '_id': 1 } });
+  const allcategories = await Category.find({}, null, { sort: { '_id': 1 } });
 
 // Nous réorganisons les catégories pour des modification au niveau des categories
 //  sans supprimer ni réinsérer toutes les catégories.
 // Cette approche économise du temps en évitant une suppression complète et une réinsertion.
 
-const categoriesWithoutParent = await Caterogy.find(
+const categoriesWithoutParent = await Category.find(
   { parent: { $exists: false } },
   null,
   { sort: { '_id': 1 } }
 ).select('name image');
 
-const latestCategoryWithoutParent = await Caterogy.findOne(
+const latestCategoryWithoutParent = await Category.findOne(
   { parent: { $exists: false } },
   null,
   { sort: { '_id': -1 } }
