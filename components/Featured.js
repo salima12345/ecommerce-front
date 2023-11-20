@@ -305,6 +305,12 @@ p{
   z-index: 0;
 }
 `;
+const ImageAvatar=styled(Image)`
+border-radius:50%;
+width: 50px;
+height: 50px;
+
+`;
 const spin = keyframes`
  0% { transform: rotate(0deg); }
  100% { transform: rotate(360deg); }
@@ -749,11 +755,11 @@ export default function Featured({categories,allcategories,productsOnSale}){
 
            </Banner>
            <Bloc>
-           <Image 
+           <ImageAvatar 
  src="/avaaatar.png" 
- alt="" 
- width={100} 
- height={100} 
+ alt="avatar" 
+ width={50} 
+ height={50} 
 
 />          
            {session ? (
