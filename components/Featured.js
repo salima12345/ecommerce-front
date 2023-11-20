@@ -89,11 +89,19 @@ width:150px;
 }
 
 `;
-const Burger=styled.img `
+const Burger=styled(Image) `
 display none ;
 @media (max-width: 1024px){
   display:flex;
 }
+
+`;
+const ImageBg=styled(Image)`
+display:flex;
+@media (max-width: 1024px){
+  display:none;
+}
+
 
 `;
 
@@ -310,6 +318,7 @@ const ImageAvatar=styled(Image)`
 border-radius:50%;
 width: 50px;
 height: 50px;
+margin-top:10px;
 
 `;
 const spin = keyframes`
@@ -614,7 +623,7 @@ export default function Featured({categories,allcategories,productsOnSale}){
             <CatTitle>
             <Burger src="/catsvg.svg" alt="" width={20} height={20}  onClick={() => setIsCategoriesVisible(!isCategoriesVisible)} />
 
-              <Image src="/catsvg.svg" alt="" width={20} height={20}  />
+              <ImageBg src="/catsvg.svg" alt="" width={20} height={20}  />
               Categories
 
             </CatTitle>
