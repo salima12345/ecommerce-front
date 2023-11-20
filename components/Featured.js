@@ -16,6 +16,7 @@ import Image from "next/image";
 
 
 
+
 const Bg = styled.div`
   color:#fff;
   height:20rem;
@@ -755,9 +756,10 @@ export default function Featured({categories,allcategories,productsOnSale}){
 
            </Banner>
            <Bloc>
+
            <ImageAvatar 
- src="/avaaatar.png" 
- alt="avatar" 
+ src="/ava.png" 
+ alt="" 
  width={50} 
  height={50} 
 
