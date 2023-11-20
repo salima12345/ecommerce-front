@@ -580,17 +580,13 @@ export default function Featured({categories,allcategories,productsOnSale}){
   const getProductUrl = (productId) => {
     return `/product/${productId}`;
   };
-  const handleParentCategoryHover = async (category_id) => {
+  const handleParentCategoryHover = (category_id) => {
     setHoveredCategoryId(category_id);
-    try {
-      const response = await axios.get(`/api/categories?parentId=${category_id}`);
-      console.log("Hovered child categories:", response.data);
-
-      setHoveredChildCategories(response.data);
-    } catch (error) {
-      console.error("Error fetching child categories:", error);
-    }
-  };
+    const hoveredCategory = allcategories.find((category) => category._id === category_id);
+    const hoveredChildCategories = allcategories.filter((category) => category.parent === hoveredCategory._id);
+    setHoveredChildCategories(hoveredChildCategories);
+   };
+   
   const handleParentCategoryLeave = () => {
     setHoveredCategoryId(null);
   };
