@@ -56,7 +56,7 @@ export  async function getServerSideProps(){
 
   await mongooseConnect();
 
-  const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 10, limit: 10 }).select('title price images discount');
+  const productItems = await Product.find({}, null, { sort: { '_id': -1 }, skip: 5, limit: 5 }).select('title price images discount');
 
   const allcategories = await Category.find({}, null, { sort: { '_id': 1 } });
 
