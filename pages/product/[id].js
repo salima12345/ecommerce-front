@@ -20,6 +20,7 @@ import { primary } from "../../lib/colors";
 import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 import Image from "next/image";
+import User from "../../models/User";
 
 
 
