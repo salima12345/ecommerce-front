@@ -185,7 +185,7 @@ export default function Register() {
       console.error('Passwords do not match');
       return;
     }
-
+   
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       headers: {
@@ -194,14 +194,19 @@ export default function Register() {
       },
       body: JSON.stringify({ name, email, password }),
     });
-
+   
     if (response.ok) {
       router.push('/login');
     } else {
       const data = await response.json();
-      console.error(data.message);
+      if (data !== undefined) {
+        console.error(data);
+      } else {
+        console.error('No data returned from server');
+      }
     }
-  };
+   };
+   
 
   return (
     <RegisterPage>
