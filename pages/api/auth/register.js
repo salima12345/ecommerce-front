@@ -16,7 +16,7 @@ export default async function handler(req, res) {
    setTimeout(async () => {
      try {
        // Hash the password
-       const hashedPassword = await bcrypt.hash(password, 12);
+       const hashedPassword = await bcrypt.hash(password, 10);
 
        // Create a new user
        const user = new User({ name, email, password: hashedPassword });
