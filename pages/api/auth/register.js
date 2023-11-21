@@ -1,5 +1,5 @@
 import { User } from '@/models/User';
-import bcrypt from 'bcryptjs';
+import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Queue from 'bull';
 
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
  }
 
  // Hash the password with 5 salt rounds
- const hashedPassword = await bcrypt.hash(password, 5);
+ const hashedPassword = await hash(password, 5);
 
  // Create a new user
  const user = new User({ name, email, password: hashedPassword });
