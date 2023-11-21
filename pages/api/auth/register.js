@@ -4,22 +4,24 @@ import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
  if (req.method === 'POST') {
-   const { name, email, password } = req.body;
+ const { name, email, password } = req.body;
 
+ try {
    // Check if the user with the same email already exists
    const existingUser = await User.findOne({ email });
    if (existingUser) {
      return res.status(400).json({ message: 'Email already in use' });
    }
 
-   // Start the slow operations in the background
+   // Hash the password with 10 salt rounds
+   const hashedPassword = await bcrypt.hash(password, 10);
+
+   // Create a new user
+   const user = new User({ name, email, password: hashedPassword });
+
+   // Save the user in the background
    setTimeout(async () => {
      try {
-       // Hash the password
-       const hashedPassword = await bcrypt.hash(password, 10);
-
-       // Create a new user
-       const user = new User({ name, email, password: hashedPassword });
        await user.save();
 
        // Issue a JWT token
@@ -38,5 +40,9 @@ export default async function handler(req, res) {
 
    // Return a response immediately
    res.status(202).json({ message: 'User registration in progress' });
+ } catch (error) {
+  console.error(error);
+  res.status(500).json({ message: 'Error registering user', error: error.message });
+ }
  }
 }
