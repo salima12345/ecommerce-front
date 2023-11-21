@@ -2,11 +2,12 @@ import { User } from '@/models/User';
 import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Queue from 'bull';
-
+import { mongooseConnect } from '@/lib/mongoose';
 // Create a new Bull queue
 const userQueue = new Queue('user');
 
 export default async function handler(req, res) {
+  await mongooseConnect();
  if (req.method === 'POST') {
  const { name, email, password } = req.body;
 
