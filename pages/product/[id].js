@@ -425,7 +425,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
       <Center>
         <ColWrapper>
           <WhiteBox>
-          <ProductImages  images={product.colors.find(color => color.name === selectedColor)?.images || product.images} alt="" />
+          <ProductImages  key={selectedColor}  images={product.colors.find(color => color.name === selectedColor)?.images || product.images} alt="" />
           </WhiteBox>
           <ProductDetails>
             <Desc>{product.description}</Desc>
