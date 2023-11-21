@@ -90,17 +90,14 @@ export function CartContextProvider({children}) {
     setCartProducts((prevCart) => {
       const updatedCart = prevCart.map((product) => {
         if (product.id === id && product.color === color && product.size === size) {
-
           return { ...product, quantity: product.quantity + 1 };
-
         }
-        setCartProducts( updatedCart);
-
         return product;
       });
       return updatedCart;
     });
-  }
+   }
+   
   
   
   
