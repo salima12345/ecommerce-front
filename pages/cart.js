@@ -342,7 +342,7 @@ export default function CartPage() {
             <QuantityLabel>
             {productInCart.quantity}
             </QuantityLabel>
-              <Button onClick={() => { console.log('Button clicked'); more(product._id, productInCart.color, productInCart.size); }}>+</Button>
+              <Button onClick={() => { more(product._id, productInCart.color, productInCart.size) }}>+</Button>
           </Quantity>
         </ProductInfo>
       </ProductContainer>
