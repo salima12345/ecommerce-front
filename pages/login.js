@@ -284,11 +284,7 @@ async function onSubmit(values){
   return (
     <LoginPage>
         <Logo>
-            <Image 
-             src="/logo-symbol.png" 
-             width={70} 
-             height={40} 
-             alt=""/>
+           
               Brand           
                </Logo>     
         <Container>
