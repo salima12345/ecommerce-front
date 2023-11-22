@@ -1,8 +1,10 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '@/models/User';
+import { mongooseConnect } from '@/lib/mongoose';
 
 export default async function handler(req, res) {
+  await mongooseConnect();
   if (req.method === 'POST') {
     const { name, email, password } = req.body;
 
