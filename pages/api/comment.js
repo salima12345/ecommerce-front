@@ -1,5 +1,5 @@
-import {Comment} from "../../models/Comment";
-import {User} from "../../models/User";
+import  Comment  from "../../models/Comment";
+import { User } from "../../models/User";
 import { Product } from "../../models/Product";
 import { mongooseConnect } from "@/lib/mongoose";
 
