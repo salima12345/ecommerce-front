@@ -229,14 +229,20 @@ a:last-child {
   const properties = category?.properties || [];
   const [selectedPropertyValues, setSelectedPropertyValues] = useState({});
   const [showAllPropertyValues, setShowAllPropertyValues] = useState(false);
-  
+  const discountedPrices = products.map(product => {
+    const discountedPrice = product.sale ? product.price - (product.price * product.discountPercentage) / 100 : product.price;
+    return discountedPrice;
+  });
+  const minDiscountedPrice = Math.min(...discountedPrices);
+  const maxDiscountedPrice = Math.max(...discountedPrices);
+
   const propertiesWithValues = properties.map((property) => {
     return {
       name: property.name,
       values: property.values || [],
     };
   });
-
+ 
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
@@ -285,7 +291,8 @@ a:last-child {
         return products;
     };}
   
-  
+ 
+
     
   
   
@@ -471,11 +478,11 @@ a:last-child {
       
           <h4>Price</h4>
           <Slider
-            min={minPrice}
-            max={maxPrice}
-            range
-            defaultValue={priceRange}
-            onChange={handlePriceChange}
+           min={minDiscountedPrice}
+           max={maxDiscountedPrice}
+           range
+           defaultValue={priceRange}
+           onChange={handlePriceChange}
           />
           <PriceRange>
              MAD{priceRange[0]} - MAD{priceRange[1]}
