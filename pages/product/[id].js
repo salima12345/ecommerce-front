@@ -719,11 +719,11 @@ return (
                    <FormGroup>
                      <TextArea
                             ref={(textarea) => {
-                              if (textarea) {
+                              if (textarea && shouldFocusComment) {
                                 textarea.focus();
                                 textarea.selectionStart = textarea.value.length;
                               }
-                            }}
+                             }}
                   
                        value={comment}
                        onChange={(e) => setComment(e.target.value)}
