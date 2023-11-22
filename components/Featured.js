@@ -618,7 +618,6 @@ export default function Featured({categories,allcategories,productsOnSale}){
            >
            
            <Categories
-            onMouseLeave={handleParentCategoryLeave}
            >
             <CatTitle>
             <Burger src="/catsvg.svg" alt="" width={20} height={20}  onClick={() => setIsCategoriesVisible(!isCategoriesVisible)} />
