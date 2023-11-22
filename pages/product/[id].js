@@ -328,6 +328,7 @@ const [selectedRom, setSelectedRom] = useState(
 );   
 const [addedToCart, setAddedToCart] = useState(false);
 const [productPrice, setProductPrice] = useState(product.price);
+const [shouldFocusComment, setShouldFocusComment] = useState(false);
 
 
   const handleColorClick = (colorName) => {
@@ -671,11 +672,12 @@ return (
                <FormGroup>
                  <TextArea
                         ref={(textarea) => {
-                          if (textarea) {
+                          if (textarea && shouldFocusComment) {
                             textarea.focus();
                             textarea.selectionStart = textarea.value.length;
                           }
-                        }}
+                         }}
+                         
               
                    value={comment}
                    onChange={(e) => setComment(e.target.value)}
