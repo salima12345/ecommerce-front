@@ -1,8 +1,10 @@
-import Comment from "../../models/Comment";
+import {Comment} from "../../models/Comment";
 import User from "../../models/User";
 import { Product } from "../../models/Product";
+import { mongooseConnect } from "@/lib/mongoose";
 
 export default async function handler(req, res) {
+  await mongooseConnect();
   if (req.method === "POST") {
     console.log(req.body);
 
