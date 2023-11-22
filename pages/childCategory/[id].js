@@ -1,6 +1,6 @@
 import Header from '../../components/Header'
 import React from 'react';
-import { Caterogy } from '../../models/Category';
+import { Category } from '../../models/Category';
 import { mongooseConnect } from "../../lib/mongoose";
 import styled from 'styled-components';
 import { primary } from "../../lib/colors";
@@ -591,13 +591,13 @@ export async function getServerSideProps(context) {
     await mongooseConnect();
     const { id } = context.query;
   
-    const category = await Caterogy.findById(id);
+    const category = await Category.findById(id);
     if (!category) {
       return {
         notFound: true,
       };
     }
-    const subCategories = await Caterogy.find({ parent: category._id });
+    const subCategories = await Category.find({ parent: category._id });
     
     const productPrices = [];
     const products = [];

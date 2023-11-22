@@ -1,6 +1,6 @@
 import Header from '../../components/Header'
 import React from 'react';
-import { Caterogy } from '../../models/Category';
+import { Category } from '../../models/Category';
 import { mongooseConnect } from "../../lib/mongoose";
 import styled from 'styled-components';
 import { primary } from "../../lib/colors";
@@ -450,25 +450,25 @@ export async function getServerSideProps(context) {
     await mongooseConnect();
     const { id } = context.query;
   
-    const category = await Caterogy.findById(id);
+    const category = await Category.findById(id);
     if (!category) {
       return {
         notFound: true,
       };
     }
-    const childCategories = await Caterogy.find({ parent: category._id });
+    const childCategories = await Category.find({ parent: category._id });
     const childWithSubCategories = [];
     const productPrices = [];
     const products = [];
     for (const childCategory of childCategories) {
-      const subCategories = await Caterogy.find({ parent: childCategory._id });
+      const subCategories = await Category.find({ parent: childCategory._id });
       childWithSubCategories.push({
         ...childCategory.toObject(),
         subCategories: subCategories.map((subCategory) => subCategory.toObject()),
       });
     }
     for (const childCategory of childCategories) {
-      const subCategories = await Caterogy.find({ parent: childCategory._id });
+      const subCategories = await Category.find({ parent: childCategory._id });
   
       for (const subCategory of subCategories) {
         const subCategoryProducts = await Product.find(
