@@ -245,12 +245,13 @@ export default function Login() {
     onSubmit,
   })
 
-console.log(formik.errors)
+
+console.log(formik.errors);
 async function handleGoogleSingin(){
-  signIn('google',{callbackUrl:process.env.NEXT_PUBLIC_PUBLIC_URL})
+  signIn('google',{callbackUrl:"http://localhost:3001"})
 }
 async function handleFacebooklogin(){
-  signIn('facebook',{callbackUrl:process.env.NEXT_PUBLIC_PUBLIC_URL})
+  signIn('facebook',{callbackUrl:"http://localhost:3001"})
 
 }
 const handleRegisterClick = () => {
@@ -262,16 +263,19 @@ const handleRegisterClick = () => {
 
 async function onSubmit(values){
   setIsLoading(true);
+  console.log('Form values submitted:', values);
   const status = await signIn('credentials',{
    redirect:false,
    email:values.email,
    password:values.password,
-   callbackUrl:process.env.NEXT_PUBLIC_PUBLIC_URL,
+   callbackUrl:"http://localhost:3001"
   }).catch(() => setIsLoading(false)); 
+  console.log(status)
   if(status.ok){
    router.push(status.url);
   } else {
    setIsLoading(false);
+   
   }
  }
  

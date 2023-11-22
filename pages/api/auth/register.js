@@ -3,6 +3,7 @@ import { hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Queue from 'bull';
 import { mongooseConnect } from '@/lib/mongoose';
+
 const userQueue = new Queue('user');
 
 export default async function handler(req, res) {
