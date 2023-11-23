@@ -12,7 +12,7 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-width:95.3%
+width:100%
 `;
 const TitleItems=styled.div`
 display:flex;

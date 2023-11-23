@@ -9,7 +9,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const StyledNewSales=styled.div`
-width:92.5%;
+width:100%;
 
 display: flex;
 flex-direction:column;

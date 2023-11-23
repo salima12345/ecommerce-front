@@ -29,7 +29,7 @@ const Wrapper = styled.div`
  justify-content: space-between;
  padding: 20px 0;
  align-items:center;
- width:92.5%;
+ width:100%;
 
 
  @media (max-width: 1024px) {
@@ -103,10 +103,9 @@ top: 0;
 
 const CartCount=styled.button`
 border-radius:50%;
-with:15px;
 border:none;
 color:#ffffff;
-transform:translate(-20%,-50%);
+transform:translate(-50%,-50%);
 
 background-color:${primary};
 `;

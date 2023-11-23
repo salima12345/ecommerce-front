@@ -7,7 +7,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const StyledNewSales=styled.div`
-width:92.5%;
+width:100%;
 
 display: flex;
 flex-direction:column;
@@ -25,6 +25,8 @@ gap:0;
 const Title=styled.h1`
 font-size: 20px;
 font-weight: 600;
+
+
 span{
   color:#1F74D3;
 }
@@ -52,18 +54,23 @@ font-size:16px;
 `;
 
 const TitleBarre = styled.div`
-width: 100%;
-box-sizing: border-box;background: linear-gradient(128deg, rgba(0, 209, 255, 0.50) 0%, #2C7CF1 100%);
+background: linear-gradient(128deg, rgba(0, 209, 255, 0.50) 0%, #2C7CF1 100%);
 border-radius:7px 7px 0 0;
 padding: 10px;
+height: 50px;
+width: 100%;
+box-sizing: border-box;
 display:flex;
 justify-content:space-between;
 align-items:center;
- flex-direction: column;
+@media (max-width: 1024px) {
+  flex-direction: column;
   align-items:flex-start;
   padding: 5px;
-  height: 50px;
+  height: 70px;
 justify-content:flex-start;
+
+}
 `;
 
 const ProductsRow = styled.div`

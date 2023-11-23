@@ -2,7 +2,7 @@ import styled from "styled-components";
 const StyledDiv=styled.div`
 max-with:800px;
 margin:0 auto;
-padding:0 60px;
+padding:0 80px;
 
 `
 

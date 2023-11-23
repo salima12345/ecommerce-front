@@ -35,7 +35,7 @@ const Bg = styled.div`
 const Container=styled.div`
 height:25rem;
 display:flex;
-width:92.5%;
+width:100%;
 
 gap:20px;
 @media (max-width: 1024px){
