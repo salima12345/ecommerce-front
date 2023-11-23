@@ -384,9 +384,11 @@ const [shouldFocusComment, setShouldFocusComment] = useState(false);
   const handleSizeClick=(size)=>{
     setSelectedSize(size);
   }
-  const handleRomClick=(rom)=>{
+  const handleRomClick = (rom) => {
     setSelectedRom(rom);
-  }
+    setProductPrice(calculateNewPrice(rom));
+   };
+   
   
 
   
@@ -433,24 +435,19 @@ const handleAddToCart = () => {
   AddProduct(product._id, selectedColor, selectedSize,selectedRom);
   setAddedToCart(true);
 };
-const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
-  let newPrice = originalPrice;
-  if( product?.properties && product?.properties.Rom ){
-    for (let i = 0; i < product?.properties.Rom.length; i++) {
-      if (selectedRom > product?.properties.Rom[i]) {
-        newPrice += originalPrice * 0.20;
-      }
-     }
+function calculateNewPrice(rom) {
+  let newPrice = product.price;
+  for (let i = 0; i < product?.properties.Rom.length; i++) {
+    if (rom > product?.properties.Rom[i]) {
+      newPrice += product.price * 0.20;
+    }
   }
-  
   return newPrice;
- }, [product]);
+ }
  
  
- useEffect(() => {
-  const newPrice = calculateNewPrice(product.price, selectedRom);
-  setProductPrice(newPrice);
- }, [selectedRom, product.price, calculateNewPrice]);
+ 
+
  
  
  
@@ -501,7 +498,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
          MAD {product.price.toFixed(2)}
        </OldPrice>
        <Price>
-         MAD {(product.price - (product.price * product.discountPercentage) / 100).toFixed(2)}
+         MAD {(productPrice - (productPrice * product.discountPercentage) / 100).toFixed(2)}
        </Price>
      </>
    ) : (
@@ -535,6 +532,8 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
               width={70}
               height={100}
               onClick={() => handleColorClick(color.name)}
+              style={{ borderColor: selectedColor === color.name ? 'black' : '#ccc' }}
+
             />
           ))}
         </div>
@@ -560,6 +559,8 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
          
           <SelectableValue key={index}
           onClick={() => handleSizeClick(size)}
+          style={{ borderColor: selectedSize === size ? 'black' : '#ccc' }}
+
           >{size}</SelectableValue>
           </>
         ))
@@ -590,6 +591,8 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
        
        <SelectableValue key={index}
        onClick={() => handleRomClick(rom)}
+       style={{ borderColor: selectedRom === rom ? 'black' : '#ccc' }}
+
        >{rom}</SelectableValue>
        </>
      ))
