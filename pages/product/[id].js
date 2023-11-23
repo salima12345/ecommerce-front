@@ -28,6 +28,7 @@ const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 50px;
+
   margin-top: 10rem;
   @media (max-width: 1024px){
   grid-template-columns: .8fr;
@@ -38,26 +39,42 @@ const ColWrapper = styled.div`
 const PriceRow = styled.div`
   display: flex;
   flex-direction:column;
-  gap: 20px;
+  gap: 10px;
   align-items: start;
+  
 `;
 const Desc=styled.div`
-width:25rem;
-font-weight:500;
+color: #000;
+
+font-family: Space Grotesk;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+height:40px;
 margin-bottom:10px;
-color:#565959;
-font-size:20px;
+`;
+const OldPrice=styled.span`
+margin-right:10px;
 `;
 const Price = styled.span`
-  font-size: 1.4rem;
-  color:${primary}
+color: #000;
+
+font-family: Courier Prime;
+font-size: 20px;
+font-weight: 600;
+
 `;
 const Stars = styled.div`
  
 `;
 const TitleDetails = styled.h2`
-  font-weight: 700;
-  font-size: 16px;
+ color:#8CB7F5;
+
+font-family: Space Grotesk;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+
 `;
 
 const HeadTitle = styled.div`
@@ -70,7 +87,13 @@ const HeadTitle = styled.div`
   align-items:center;
 
 `;
-const ProductDetails=styled.div``;
+const ProductDetails=styled.div`
+height:25rem;
+`;
+const Btn=styled.div`
+margin-top:25rem;
+position:absolute;
+`;
 
 const Details = styled.div`
   background-color: #fff;
@@ -120,8 +143,12 @@ color:#264996;
 
 `;
 const CountReview=styled.div`
-color:${primary};
+color: #6C6C6C;
 
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
 
 `;
 const ReviewsContent=styled.div`
@@ -188,13 +215,23 @@ margin-bottom:10px;
 `;
 const Property=styled.p`
 span{
-  color: #555;
-    font-weight: 500;
+  color:#8CB7F5;
+
+  font-family: Space Grotesk;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
 }
-color:#0F1111;
-font-size:16px;
+color: #6C6C6C;
+
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
 `;
-const Selectable=styled.div``;
+const Selectable=styled.div`
+
+`;
 
 const Colors=styled.div`
 `;
@@ -220,14 +257,14 @@ display:flex;
 `;
 const SelectableValue=styled.div`
 backgroundColor: lightgray;
-height:40px;
+height:20px;
 border:1px solid #ccc;
 border-radius: 7px;
 padding:7px;
 display: flex;
 justify-content: center;
 align-items: center;
-margin: 5px;
+margin: 3px;
 cursor: pointer;
 &:hover{
   border:1px solid black;
@@ -276,8 +313,17 @@ color:#75757A;
 
 
 const RelatedProducts=styled.div`
+margin-top:30px;
 margin-left:15px;
 margin-bottom:100px;
+h2{
+  color:#8CB7F5;
+
+  font-family: Space Grotesk;
+  margin-top:50px;
+
+
+}
 
 `;
 
@@ -318,6 +364,7 @@ function ProductPage({ product,relatedProducts,commentss ,avgRating}) {
   const [rating, setRating] = useState(0);
   const router = useRouter();
   const [showAllComment, setShowAllComment] = useState(false);
+  const truncatedDesc = product.description.length > 100 ? `${product.description.substring(0, 100)}...` :product.description;
 
   const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
 const [selectedSize, setSelectedSize] = useState(
@@ -429,7 +476,7 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
           <ProductImages  key={selectedColor} images={product.colors.find(color => color.name === selectedColor)?.images || product.images} alt="" />
           </WhiteBox>
           <ProductDetails>
-            <Desc>{product.description}</Desc>
+            <Desc>{truncatedDesc}</Desc>
             <PriceRow>
             <Stars>
                 <ReviewsAverage>
@@ -447,14 +494,22 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
 
                   
              </Stars>
-              <div>
-              <Price>MAD {(
-  productPrice -
-  (productPrice * product.discountPercentage) / 100
-).toFixed(2)}</Price>
-
-                
-              </div>
+             <div>
+   {product.sale ? (
+     <>
+       <OldPrice style={{ textDecoration: 'line-through' }}>
+         MAD {product.price.toFixed(2)}
+       </OldPrice>
+       <Price>
+         MAD {(product.price - (product.price * product.discountPercentage) / 100).toFixed(2)}
+       </Price>
+     </>
+   ) : (
+     <Price>
+       MAD {product.price.toFixed(2)}
+     </Price>
+   )}
+ </div>
               
   <Colors>
      <div>
@@ -555,13 +610,16 @@ const calculateNewPrice = useCallback((originalPrice, selectedRom) => {
 
 
 
-
-
-       
+<Btn>
 <Button primary onClick={handleAddToCart}>
     <CartIcon />
     Add to cart
   </Button>
+
+</Btn>
+
+       
+
             </PriceRow>
           </ProductDetails>
         </ColWrapper>

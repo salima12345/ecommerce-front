@@ -42,7 +42,6 @@ const Wrapper = styled.div`
 
 
 const Logo = styled(Link)`
-  color:#fff;
   text-decoration:none;
   position: relative;
   z-index: 3;

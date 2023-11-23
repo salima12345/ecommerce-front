@@ -40,7 +40,6 @@ color:#fff;
 border:1px solid ${primary};
 
 
-
 `}
 ${props => props.black && props.outline && css`
 background-color: #000;
