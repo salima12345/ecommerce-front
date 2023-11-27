@@ -165,7 +165,7 @@ const Header = ({ isSuccess }) => {
   const { cartProducts } = useContext(CartContext);
   const [cartItemCount, setCartItemCount] = useState(cartProducts.length);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [searchResults, setSearchResults] = useState(null);
  
   useEffect(() => {
   let totalQuantity = 0;
@@ -175,18 +175,13 @@ const Header = ({ isSuccess }) => {
   setCartItemCount(totalQuantity);
   }, [cartProducts]);
  
-  const getCategoryIdFromHits = (hits) => {
-  if (hits.length > 0) {
-   return hits[0].category;
-  }
-  return null;
-  }
+
  
   const CustomHits = connectStateResults(({ searchState, searchResults }) => {
     if (!searchState.query) {
     return null;
     }
-   
+    setSearchResults(searchResults);
     return searchResults && searchResults.nbHits > 0 ? (
     <div >
       <Hits hitComponent={Hit} />
@@ -196,6 +191,19 @@ const Header = ({ isSuccess }) => {
     );
    });
    
+   const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && searchQuery.trim() !== '') {
+      // Naviguer vers la page de la catégorie avec le premier résultat de la recherche
+      router.push(getsubCategoryUrl(getCategoryIdFromHits(searchResults.hits)));
+    }
+  };
+const getCategoryIdFromHits = (hits) => {
+  if (hits.length > 0) {
+    return hits[0].category;
+  }
+  return null;
+ };
+ 
  
   return (
   <StyledHeader>
@@ -209,11 +217,11 @@ const Header = ({ isSuccess }) => {
          searchClient={searchClient}
        >
          <Search>
-           <StyledSearchBox
-             onChange={(event) => setSearchQuery(event.target.value)}
-             value={searchQuery}
-            
-           />
+         <StyledSearchBox
+            onChange={(event) => setSearchQuery(event.target.value)}
+            onKeyPress={handleKeyPress} // Ajouter cette ligne
+            value={searchQuery}
+          />
            <CustomHits />
          </Search>
        </InstantSearch>
