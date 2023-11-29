@@ -12,7 +12,7 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-width:100%
+width:100%;
 `;
 const TitleItems=styled.div`
 display:flex;
@@ -26,12 +26,17 @@ display:flex;
 justify-content:center;
 align-items:center;
 
+
 span{
-background-color: #ccc;
+background-color:#ccc;
     width:150px;
     height:1px;
     
 }
+@media (max-width: 1024px){
+  margin-left:150px;
+}
+
 `;
 const Title=styled.h2`
 margin-left:15px;
@@ -49,6 +54,9 @@ border:none ;
 cursor:pointer;
 width:200px;
 margin-top:60px;
+@media (max-width: 1024px){
+  margin-left:180px;
+}
 `;
 
 
@@ -67,6 +75,7 @@ export default function MoreToLove({ productItems }) {
   const handleViewLessClick = () => {
     setVisibleProducts(5); 
   };
+
 
   return (
     <Center>

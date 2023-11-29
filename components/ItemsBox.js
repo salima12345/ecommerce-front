@@ -17,7 +17,7 @@ transition: box-shadow 0.3s ease;
 }
 @media (max-width: 1024px){
   position:relative;
-  width:150px;
+  width:310px;
   height:200px;
   text-align:center;
 }
@@ -41,16 +41,23 @@ justify-content: center;
 align-items: center;
 img{
   width:100%;
-height:100%
+height:100%;
 }
 @media (max-width: 1024px){
+  width: 190px;
+
   position:relative;
   height:80px;
   padding:10px;
 
+
   img{
-    width:60%;
-    height:60%;
+    width:300px;
+    height:100%;
+    padding-left:60px;;
+    position:relative;
+    
+
   }
 }
 `;
@@ -71,6 +78,7 @@ color:black;
 height:40px;
 @media (max-width: 1024px){
   height:45px;
+  font-size:20px;
 }
 `;
 const OldPrice=styled.div`

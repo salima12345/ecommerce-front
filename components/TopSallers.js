@@ -18,6 +18,9 @@ border-radius:10px;
 gap:0;
 @media (max-width: 1024px){
   margin-top:60px;
+  width:150%;
+  position:relative;
+
 }
 
 `;

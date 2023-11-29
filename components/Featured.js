@@ -40,6 +40,9 @@ width:100%;
 gap:20px;
 @media (max-width: 1024px){
   display:flex;
+  width:150%;
+  
+
   flex-direction:column;
   height:15rem;
   margin-bottom:10rem;

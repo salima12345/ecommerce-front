@@ -74,6 +74,7 @@ const Logo = styled(Link)`
   @media (max-width: 1024px) {
     font-size: 1rem;
     order: 1;
+
   }
 `;
 
@@ -88,6 +89,7 @@ const Search = styled.div`
   @media (max-width: 1024px) {
     margin-right: 0;
     order: 2;
+    width:80%
   }
 `;
 
@@ -100,6 +102,7 @@ const StyledSearchBox = styled(SearchBox)`
     border-color: #8cb7f5;
     outline: none;
   }
+
 `;
 
 const StyledHit = styled(Hit)`
@@ -155,7 +158,7 @@ const NavIcon = styled(Link)`
   @media (max-width: 1024px) {
     order: 1;
     transform: translate(90%, -95%);
-    margin-left: 55%;
+    margin-left: 60%;
     position: relative;
   }
 `;

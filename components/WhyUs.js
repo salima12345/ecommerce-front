@@ -3,14 +3,23 @@ import styled from 'styled-components'
 import Center from './Center';
 import { FaFacebook, FaInstagram, FaTwitter, FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
-const SloganContainer=styled.div`
-background-color:#ffffff;
-width:100%;
-position:absolute;
 
-
-
+const SloganContainer = styled.div`
+ background-color: #ffffff;
+ width: 100%;
+ max-width: 1200px; 
+ position: absolute;
+ @media (max-width: 1024px) {
+   width: 150%;
+   position: relative;
+ }
 `;
+
+
+
+
+
+
 const Slogan=styled.div`
 display:flex;
 flex-direction:row;
@@ -55,6 +64,7 @@ flex-direction:row;
 gap:25rem;
 @media (max-width: 1024px){
     flex-direction:column;
+    width:100%;
 }
 `;
 const SocialMedia=styled.div``;
