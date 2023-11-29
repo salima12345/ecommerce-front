@@ -10,6 +10,7 @@ import { useRef, useEffect } from 'react';
 
 import Slider from 'rc-slider';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import 'rc-slider/assets/index.css';
 import { useState } from 'react';
