@@ -220,12 +220,16 @@ border: 1px solid #ccc;
 width:170px;
 margin-top:45px;
 padding-left:10px;
+z-index: 9999; 
 p{
   cursor:pointer;
   color:#222;
 font-size:14px;
 &:hover{
     color:${primary};
+}
+@media (max-width: 1024px){
+  z-index:9999;
 }
   
 
@@ -286,6 +290,11 @@ display:flex;
   display:none;
 }
 `;
+const Tit=styled.div`
+  display:flex;
+  align-items:center;
+  gap:20px;
+  `;
 
  export default function CategoryPage({category,childWithSubCategories,minPrice,maxPrice ,products}) {
   const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
@@ -416,11 +425,7 @@ display:flex;
     setPriceRange([minPrice, maxPrice]);
 
   };
-  const Tit=styled.div`
-  display:flex;
-  align-items:center;
-  gap:20px;
-  `;
+  
   
   
   

@@ -29,16 +29,35 @@ position: relative;
 
 `;
 const SideNav=styled.div`
-height:100vh;
-max-height: calc(100vh - 90px);
-padding-right:70px;
-Width:150px;
-padding-left:70px;
-overflow-y: auto; 
-background-color:#ffffff;
-position: fixed;
-top: 5.3rem;
+ height:100vh;
+ max-height: calc(100vh - 90px);
+ padding-right:70px;
+ Width:150px;
+ padding-left:70px;
+ overflow-y: auto; 
+ display: flex;
+ flex-direction:column;
+ background-color:#ffffff;
+ position: fixed;
+ top: 5.3rem;
+ @media (max-width: 1024px){
+  display: ${({isCategoriesVisible}) => isCategoriesVisible ? 'flex' : 'none'};
+  height:100%;
+  position:absolute;
+  margin-top:0px;
+  z-index:2;
+  top:0;
+  padding-left:30px;
+  padding-right:40px;
+  padding-top:10px;
 
+
+ }
+`;
+const Tit=styled.div`
+display:flex;
+align-items:center;
+gap:20px;
 `;
 const CatName=styled.h6`
 font-size:16px;
@@ -112,6 +131,7 @@ border-bottom: 2px solid #ccc;
   margin-bottom:100px;
   justify-content:flex-start;
   align-items:flex-start;
+  border:none;
 
 
 
@@ -124,6 +144,11 @@ display:flex;
 align-items:center;
 p{
   font-weight:500;
+}
+@media (max-width: 1024px){
+  display:none;
+
+
 }
 
 `;
@@ -152,6 +177,9 @@ font-size:16px;
 background-color: #fff;
 border: 1px solid #ccc;
 border-radius: 5px;
+@media (max-width: 1024px){
+  width:235px;
+}
 
 
 `;
@@ -169,7 +197,8 @@ p{
 font-size:14px;
 &:hover{
     color:${primary};
-}}`;
+}
+}`;
 const Properties=styled.div`
 ul li{
   text-decoration:none;
@@ -202,6 +231,61 @@ const MoreLessBtn=styled.p`
 cursor:pointer;
 color:${primary}
 `;
+const Burger=styled(Image) `
+display none ;
+@media (max-width: 1024px){
+  display:flex;
+}
+
+`;
+const CatTitle=styled.div`
+display:none;
+width:280px;
+
+
+gap:10px;
+color:black;
+font-weight:700;
+font-size:16px;
+align-items:center;
+
+height:40px;
+background-color:#ffffff;
+padding-left:15px;
+border-radius:10px 10px 0 0px;
+
+
+@media (max-width: 1024px){
+  display:flex;
+  padding-left: 2rem;
+  margin-left:1.5rem
+
+
+}
+
+`;
+const Cross=styled.div`
+display:none;
+@media (max-width: 1024px){
+  display:flex;
+  gap:10px;
+  img {
+    display: block;
+  }
+}
+
+`;
+const ImageBurger=styled(Image)`
+fill: #505050; 
+width: 20px;
+height: 20px;
+margin-right: 8px;
+display:flex;
+
+@media (max-width: 1024px){
+  display:none;
+}
+`;
   
 
  export default function ChildCategoryPage({category,subCategories,minPrice,maxPrice ,products}) {
@@ -218,6 +302,8 @@ color:${primary}
   const properties = category.properties || [];
   const [selectedPropertyValues, setSelectedPropertyValues] = useState({});
   const [showAllPropertyValues, setShowAllPropertyValues] = useState(false);
+  const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
+
   const propertiesWithValues = properties.map((property) => {
     return {
       name: property.name,
@@ -442,9 +528,15 @@ color:${primary}
     <>
     <Header/>
         <Container>
-            <SideNav>
-                <h4>Categories</h4>
-                <CatName
+            <SideNav  isCategoriesVisible={isCategoriesVisible}>
+            <Tit>
+             <h3>Categories</h3>
+                <Cross>
+          <ImageBurger src="/cross-svgrepo-com.svg" alt="" width={30} height={30} onClick={() => setIsCategoriesVisible(false)}  />
+         
+        </Cross>
+             </Tit>            
+                 <CatName
                  onClick={() => handleCategory()}
                 >{category.name}</CatName>
                 
@@ -529,6 +621,12 @@ color:${primary}
                   <p> Results:</p>
                  {filteredProducts.length}
                 </SearchResult>
+                <CatTitle>
+            <Burger src="/catsvg.svg" alt="" width={20} height={20}  onClick={() => setIsCategoriesVisible(!isCategoriesVisible)} />
+<p> Categories</p>
+             
+
+            </CatTitle>
                 <SortBy>
                 <p> Sort by :</p>
                  <SelectContainer>
