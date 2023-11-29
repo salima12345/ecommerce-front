@@ -83,7 +83,7 @@ const ProductItems=styled.div`
 padding-top: 6rem;
 padding-left: 32rem;
 @media (max-width: 1024px){
-  padding-left: 21rem;
+  padding-left: 2rem;
   padding-top: 6rem;
 
 
