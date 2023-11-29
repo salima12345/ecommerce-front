@@ -22,7 +22,9 @@ width:100%;
 gap:10rem;
 position: relative;
 @media (max-width: 1024px){
-  grid-template-columns:2.5fr 1.5fr;
+  grid-template-columns:1fr;
+  height:100%;
+  margin-top:100px;
 
 
 }
