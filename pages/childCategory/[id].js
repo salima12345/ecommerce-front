@@ -161,6 +161,12 @@ align-items:center;
 p{
   font-weight:500;
 }
+@media (max-width: 1024px){
+  padding-left:2rem;
+  width:300px;
+
+}
+
 
 `;
 
