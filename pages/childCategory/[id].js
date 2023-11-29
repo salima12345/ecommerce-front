@@ -7,7 +7,6 @@ import { primary } from "../../lib/colors";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai';
 import 'react-icons/ai';
 import { useRef, useEffect } from 'react';
-import Image from 'next/image';
 
 import Slider from 'rc-slider';
 
