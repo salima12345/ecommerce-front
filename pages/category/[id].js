@@ -7,6 +7,7 @@ import { primary } from "../../lib/colors";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai';
 import 'react-icons/ai';
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 import Slider from 'rc-slider';
 
@@ -22,9 +23,9 @@ width:100%;
 gap:10rem;
 position: relative;
 @media (max-width: 1024px){
-  grid-template-columns:1.5fr 2.5fr;
+  grid-template-columns:1fr;
   height:100%;
-  position:absolute;
+  margin-top:100px;
 
 
 }
@@ -32,25 +33,36 @@ position: relative;
 
 `;
 const SideNav=styled.div`
-height:100vh;
-max-height: calc(100vh - 90px);
-padding-right:70px;
-Width:150px;
-padding-left:70px;
-overflow-y: auto; 
-background-color:#ffffff;
-position: fixed;
-top: 5.3rem;
-@media (max-width: 1024px){
+ height:100vh;
+ max-height: calc(100vh - 90px);
+ padding-right:70px;
+ Width:150px;
+ padding-left:70px;
+ overflow-y: auto; 
+ display: flex;
+ flex-direction:column;
+ background-color:#ffffff;
+ position: fixed;
+ top: 5.3rem;
+ @media (max-width: 1024px){
+  display: ${({isCategoriesVisible}) => isCategoriesVisible ? 'flex' : 'none'};
   height:100%;
   position:absolute;
+  margin-top:0px;
+  z-index:2;
+  top:0;
+  padding-left:30px;
+  padding-right:40px;
+  padding-top:10px;
 
 
-}
-
-
-
+ }
 `;
+
+
+
+
+
 const CatName=styled.h6`
 font-size:16px;
 font-weight:500;
@@ -84,6 +96,7 @@ cursor:pointer;
 const StyledList=styled.div`
 list-style: none;
 padding-left:19px;
+
 `;
 const ListItem=styled.p`
 text-decoration: none;
@@ -93,6 +106,7 @@ font-size:14px;
 &:hover{
     color:${primary};
 }
+
 
 `;
 
@@ -107,7 +121,7 @@ const ProductItems=styled.div`
 padding-top: 6rem;
 padding-left: 32rem;
 @media (max-width: 1024px){
-  padding-left: 21rem;
+  padding-left: 2rem;
   padding-top: 6rem;
 
 
@@ -139,6 +153,7 @@ border-bottom: 2px solid #ccc;
   margin-bottom:100px;
   justify-content:flex-start;
   align-items:flex-start;
+  border:none;
 
 
 
@@ -152,6 +167,11 @@ align-items:center;
 p{
   font-weight:500;
 }
+@media (max-width: 1024px){
+  display:none;
+
+
+}
 
 `;
 const SortBy=styled.div`
@@ -160,6 +180,12 @@ align-items:center;
 p{
   font-weight:500;
 }
+@media (max-width: 1024px){
+  padding-left:2rem;
+  width:300px;
+
+}
+
 
 `;
 
@@ -167,6 +193,7 @@ const SelectContainer=styled.div`
 display:flex;
 flex-direction:column;
 position:relative;
+
 
 `
 const SelectBarre=styled.button`
@@ -179,6 +206,9 @@ font-size:16px;
 background-color: #fff;
 border: 1px solid #ccc;
 border-radius: 5px;
+@media (max-width: 1024px){
+  width:235px;
+}
 
 
 `;
@@ -200,14 +230,61 @@ font-size:14px;
   
 
 }
+`;
+const CatTitle=styled.div`
+display:none;
+width:280px;
 
 
+gap:10px;
+color:black;
+font-weight:700;
+font-size:16px;
+align-items:center;
+
+height:40px;
+background-color:#ffffff;
+padding-left:15px;
+border-radius:10px 10px 0 0px;
 
 
+@media (max-width: 1024px){
+  display:flex;
+  padding-left: 2rem;
+  margin-left:1.5rem
 
- 
 
+}
 
+`;
+const Burger=styled(Image) `
+display none ;
+@media (max-width: 1024px){
+  display:flex;
+}
+
+`;
+const Cross=styled.div`
+display:none;
+@media (max-width: 1024px){
+  display:flex;
+  gap:10px;
+  img {
+    display: block;
+  }
+}
+
+`;
+const ImageBurger=styled(Image)`
+fill: #505050; 
+width: 20px;
+height: 20px;
+margin-right: 8px;
+display:flex;
+
+@media (max-width: 1024px){
+  display:none;
+}
 `;
 
  export default function CategoryPage({category,childWithSubCategories,minPrice,maxPrice ,products}) {
@@ -222,6 +299,8 @@ font-size:14px;
   const [selectedOption, setSelectedOption] = useState('Price High To Low'); 
   const [filteredProducts, setFilteredProducts] = useState(products);
   const router = useRouter();
+  const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
+
   const { id } = router.query;
 
 
@@ -296,6 +375,8 @@ font-size:14px;
     const filtered = products.filter((product) => {
       return childCategory.subCategories.some(subCategory => subCategory._id.toString() === product.category._id.toString());
     });
+
+
     const subchildCategoryPrices = filtered.map((product) => product.price);
   const minPrice = Math.min(...subchildCategoryPrices);
   const maxPrice = Math.max(...subchildCategoryPrices);
@@ -335,6 +416,11 @@ font-size:14px;
     setPriceRange([minPrice, maxPrice]);
 
   };
+  const Tit=styled.div`
+  display:flex;
+  align-items:center;
+  gap:20px;
+  `;
   
   
   
@@ -345,8 +431,14 @@ font-size:14px;
     <>
     <Header/>
         <Container>
-            <SideNav>
-                <h3>Categories</h3>
+            <SideNav isCategoriesVisible={isCategoriesVisible}>
+             <Tit>
+             <h3>Categories</h3>
+                <Cross>
+          <ImageBurger src="/cross-svgrepo-com.svg" alt="" width={30} height={30} onClick={() => setIsCategoriesVisible(false)}  />
+         
+        </Cross>
+             </Tit>
                 <CatName
                  onClick={() => handleCategory()}
                 >{category.name}</CatName>
@@ -388,6 +480,12 @@ font-size:14px;
                   <p> Results:</p>
                  {filteredProducts.length}
                 </SearchResult>
+                <CatTitle>
+            <Burger src="/catsvg.svg" alt="" width={20} height={20}  onClick={() => setIsCategoriesVisible(!isCategoriesVisible)} />
+<p> Categories</p>
+             
+
+            </CatTitle>
                 <SortBy>
                 <p> Sort by :</p>
                  <SelectContainer>

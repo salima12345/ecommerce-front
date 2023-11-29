@@ -172,6 +172,7 @@ width: 20px;
 height: 20px;
 margin-right: 8px;
 display:flex;
+position:relative;
 @media (max-width: 1024px){
   display:none;
 }
@@ -503,7 +504,7 @@ text-align:left;
 padding:10px;
 a{text-decoration:none}
 .product-slider {
-  width: 100%;
+  width: 100 %;
   height: 100%;
   overflow: hidden;
 }
