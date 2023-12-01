@@ -45,8 +45,9 @@ align-items:center;
 gap:10px;
 font-weight:bold;
 @media (max-width: 1024px){
-  font-size:1rem;
+  font-size:1.5rem;
   margin-top:3rem;
+  margin-right:3rem;
   position:relative;
 
 }
