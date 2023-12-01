@@ -271,7 +271,7 @@ export default function Register() {
         <Button type="submit">Register</Button>
       </Form>
       <Ask>
-      Already have an ccount?
+      Already have an account?
       <LinkLogin href="/login">
         Log in
       </LinkLogin>
